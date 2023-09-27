@@ -6,4 +6,22 @@ $color5: rgb(255,96,48, 0.503);
 
 
 /* BOOTSTRAP*/
-$primary: $color1;
+$primary                         :$color1;  /* burada istedigimiz renkleri ezebiliriz*/
+$navbar-light-color              :$color2;
+$navbar-light-hover-color        :$color1;
+$navbar-light-active-color       :$color1;
+$border-radius                   :2rem;
+$input-btn-padding-y             :1rem;
+$input-btn-padding-x             :2rem;
+
+/*EGER DOSYAMIZ CSS OLSAYDI busekilde yapardik$navbar-light-color: $color2;
+.nav-link:hover, .nav-link:focus{
+     color:red !important;} */
+
+     /* SWEET ALER*/
+     $swal2-confirm-button-background-color: $color1;
+     $swal2-cancel-button-background-color : $color2;
+     $swal2-question                       : $color1
+
+
+ 
