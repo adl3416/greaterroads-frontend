@@ -2,15 +2,18 @@ import React from "react";
 import logo from "../../../../assets/img/logo/logo-white.png";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ContactInfo from "../../contact/contact-info";
+import "./footer.scss";
+import {settings} from "../../../../utils/settings"
 
 const Footer = () => {
   return (
     <Container fluid className="footer ">
-      <Container>
-        <Row>
-          <Col md={3}>
+      <Container>  
+        <Row className="g-5">
+          <Col md={6} lg={3}> 
             <Link>
-              <img src={logo} alt="//settings.siteName" />
+              <img src={logo} alt={settings.siteName} className="img-fluid" /> 
             </Link>
             <p>
               Flexible Vermietung Stornieren oder ändern Sie die meisten
@@ -18,8 +21,8 @@ const Footer = () => {
             </p>
           </Col>
 
-          <Col md={3}>
-            <h2> Quick Links </h2>
+          <Col md={6} lg={3}>
+            <h2> Quick Links </h2> 
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -38,7 +41,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col md={3}>
+          <Col md={6} lg={3}>
             <h2> Working Hours </h2>
             <ul>
               <li>Mon-Fir: 09:00AM - 09:00 PM</li>
@@ -47,14 +50,8 @@ const Footer = () => {
             </ul>
           </Col>
 
-          <Col md={3}>
-            <h2> Contact Us </h2>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+          <Col md={6} lg={3}> <h2> Contact Us </h2>
+           <ContactInfo/>
           </Col>
         </Row>
       </Container>

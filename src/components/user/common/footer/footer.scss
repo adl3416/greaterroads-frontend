@@ -1,0 +1,27 @@
+@use "../../../../assets/scss/variables" as v;
+@use "../../../../assets/scss/-mixins.scss" as m;
+
+.footer{
+     background-color: v.$color1;
+     padding: 5rem;
+
+     img{margin-bottom: 1rem;}
+
+     ul{
+          @include m.reset-list(); //hersey resetleniyor
+          @include m.flexbox(column, flex-start, flex-start, 1rem);  //Mon-Fir: 09:00AM  yazilarin arasina bosluk verdik
+          
+          a{
+               color: v.$color2;
+          }
+     }
+
+     h2{
+          font-weight: 750;
+          font-size: 1.7rem;
+          margin-bottom: 1rem;
+
+     }
+
+
+}

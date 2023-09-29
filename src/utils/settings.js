@@ -6,7 +6,8 @@ siteUrl: "greatroads.com",
 email: "support@greatroads.com",
 phone1 :"(0609)-20200609",
 phone2 : "(0609)-20268277",
-adress:  "tiegenhöfer str,424888 velvert,deutschlan",
+adress:  "Tiegenhöfer str, Velvert,Deutschland",
 mapEmbedUrl :"https//www.google.com/   mapdan ayarlanmasi gerekiyor"
 
 }
+export default settings
