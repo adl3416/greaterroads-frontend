@@ -6,8 +6,9 @@
      background-repeat:no-repeat;
      background-size: cover;
      background-position: center center;
-     border: 3px solid blue;
+     
      @include m.flexbox(row, flex-start, stretch,0rem);
+     position: relative;
 
      &::before{
           content: "";
@@ -25,22 +26,27 @@
 
                .carousel-item{
                     height: 100%;
-                    @include m.flexbox(row, flex-end, flex-end,0rem);
+                  
 
                     img{
+                         position: relative;
+                         right: 0;
+                         bottom: 0;
+
+
                          @media (max-width:1300px) { 
                               display:none;
                               }
                     }
 
                     .carousel-caption{
-                         top: 70%;
+                         top: 50%;
                          transform: translateY(-50);
                          text-align: left;
-                         width: 90%;
+                         width: 30%;
 
                          @media (max-width:1300px) { 
-                              width: 80px;;
+                              width: 80%;
                               text-align: center;
                               left:50%;
                               transform: translateX(-50) translateY(-50);
@@ -55,7 +61,8 @@
                               color: v.$color1;
                               font-size: 3rem;
                               font-weight: 900;
-                              text-shadow: 0 0 15px white;
+                              text-shadow: 0 0 15px white;  //maatlastiriyor
+                              width: 80%;
                          }
                          p{
                               font-size: 1.2 rem;

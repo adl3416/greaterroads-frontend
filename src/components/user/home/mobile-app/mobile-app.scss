@@ -1,0 +1,21 @@
+
+@use "../../../../assets//scss/variables" as v;
+
+.mobile-app{
+     background-image: linear-gradient(v.$color4, v.$color3);
+     padding: 5rem;
+
+     .store{
+          display: flex;
+          justify-content: space-between;
+     }
+
+     // [class^= "col-"]:last-child{         // class ismi col ile baslayan
+     //      text-align: right;
+     //      @media (max-width:767){
+     //                text-align: center;
+     //      }
+     // }
+
+
+}
