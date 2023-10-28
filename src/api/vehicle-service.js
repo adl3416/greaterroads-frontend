@@ -5,5 +5,14 @@ const API_URL = settings.apiURL;
 
 const getVehicles=()=>{
      return axios.get(`${API_URL}/car/visitors/all`);
-}
-export{getVehicles}; 
+};
+
+const getVehiclesByPage=(page = 0, size= 10, sort= "model", direction="ASC")=>{
+     return axios.get(
+          `${API_URL}/car/visitors/page?page=${page}&size=${size}&sort=${sort}&direction=${direction}`
+     );
+
+};
+
+
+export{getVehicles, getVehiclesByPage}; 

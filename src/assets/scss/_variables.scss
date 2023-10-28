@@ -4,6 +4,7 @@ $color3: rgb(237,237,237);
 $color4: rgb(255,96,48,0.19);
 $color5: rgb(255,96,48, 0.503);
 
+/*not modules den bulup style.scss den import edip burada istedigimiz renkleri vs  eziyoruz*/
 
 /* BOOTSTRAP*/
 $primary                         :$color1;  /* burada istedigimiz renkleri ezebiliriz*/
@@ -21,7 +22,10 @@ $input-btn-padding-x             :2rem;
      /* SWEET ALER*/
      $swal2-confirm-button-background-color: $color1;
      $swal2-cancel-button-background-color : $color2;
-     $swal2-question                       : $color1
+     $swal2-question                       : $color1;
+
+     /* SWIPER*/
+     $themeColor:    $color1;
 
 
  

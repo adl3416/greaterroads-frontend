@@ -2,8 +2,8 @@ import React from "react";
 import "./mobile-app.scss";
 import { Col, Container, Row } from "react-bootstrap";
 import SectionHeader from "../../common/section-header/section-header";
-import btnGoogle from "../../../../assets/img/buttons/google-play.png";
-import btnApple from "../../../../assets/img/buttons/app-store.png";
+import btnGoogle from "../../../../assets/img/buttons/google-play.svg";
+import btnApple from "../../../../assets/img/buttons/app-store.svg";
 import mobileApp from "../../../../assets/img/bg/mobile.png";
 
 const MobileApp = () => {

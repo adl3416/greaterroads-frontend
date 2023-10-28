@@ -8,14 +8,20 @@
      .store{
           display: flex;
           justify-content: space-between;
+
+          @media (max-width: 500px){
+          img{
+               width: 100px;
+               height: auto;
+          }
      }
 
      // [class^= "col-"]:last-child{         // class ismi col ile baslayan
      //      text-align: right;
      //      @media (max-width:767){
      //                text-align: center;
-     //      }
+     //      
      // }
 
-
+}
 }
