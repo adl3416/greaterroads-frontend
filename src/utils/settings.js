@@ -1,6 +1,6 @@
 export const settings   ={
      
-apiURL : "https://carrental-v2-backend.herokuapp.com",
+apiURL : "https://carrental-v3-backend.herokuapp.com",
 siteName:"Great Roads",
 siteUrl: "greatroads.com",
 email: "support@greatroads.com",
