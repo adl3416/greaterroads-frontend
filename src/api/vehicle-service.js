@@ -1,5 +1,7 @@
 import axios from "axios";
-const {settings} = require("../utils/settings")
+const {settings} = require("../utils/settings")  // bu setting in importu 
+
+
 
 const API_URL = settings.apiURL;
 
