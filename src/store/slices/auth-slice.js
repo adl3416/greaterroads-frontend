@@ -3,22 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
  export const authSlice=createSlice({
      name:"auth",
      initialState:{
-          user:{firstName: "Ali", lasstName:" AK" , roles: ["Administrator"]},
-          isUserLogin:true
+          user:{firstName: "Ali", lasstName:" A" , roles: ["Administrator"]},
+          isUserLogin:false
      },
 
      reducers:{
-          loginSuccess: (state, action)=>{
+          loginSuccess: (state, action)=>{     // login in basarili olmasi durumu, backend e baglaniyoruz action yani disardan gelen name ile backendekini esitliyoruz problem yoksa eger true
                state.user = action.payload;
                state.isUserLogin=true;
           }, 
 
-          loginFailed: (state)=>{
-               state.user={};
+          loginFailed: (state)=>{   // login basarisiz
                state.isUserLogin=false; 
           },
           logout: (state) =>{
-               state.user = {};
+               state.user = {}; // mevcut state bosalt
                state.isUserLogin=false;
           }, 
 
