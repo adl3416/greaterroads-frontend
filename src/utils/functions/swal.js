@@ -10,3 +10,5 @@ export const question = (title,text="") => {   // giristen sonra cikmak istedigi
          
         });
  };
+
+ 

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
  export const authSlice=createSlice({
      name:"auth",
      initialState:{
-          user:{firstName: "Ali", lastName:" Siyah" , roles: ["Administrator"]},
+          user:{firstName: "Medine", lastName:"Guzel" , roles: ["Administrator"]},
           isUserLogin:true
      },
 

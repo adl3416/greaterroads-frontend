@@ -3,6 +3,7 @@ import { Button, Dropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../../../store/slices/auth-slice';
+import { question } from '../../../../utils/functions/swal';
 
 const UserMenu= () => {
 
@@ -11,9 +12,22 @@ const UserMenu= () => {
      const navigate=useNavigate();
 
      const handleLogout = () => { 
-      dispatch(logout());
-      //localISROREGE bosaltilcak
-      navigate("/") // logout dan sonra ana sayfaya yönlendiriyoz
+
+      //mesajverecegiz bu fonksiyonu utilsde functionun icinde swalda olusturtuk
+      question("Are you sure to logout").then(result=> {
+        console.log(result)
+        if(result.isConfirmed) { // logout a basdigimizda isConfirmed true oluyo vi dispatch calisiyor
+
+          dispatch(logout());
+          //localISROREGE bosaltilcak
+          navigate("/") // logout dan sonra ana sayfaya yönlendiriyoz
+
+        }
+      })
+
+
+
+    
 
       };
 
