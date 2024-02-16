@@ -11,9 +11,11 @@ $primary                         :$color1;  /* burada istedigimiz renkleri ezebi
 $navbar-light-color              :$color2;
 $navbar-light-hover-color        :$color1;
 $navbar-light-active-color       :$color1;
+$nav-link-font-weight            :600;
 $border-radius                   :2rem;
 $input-btn-padding-y             :1rem;
 $input-btn-padding-x             :2rem;
+$font-family-sans-serif          :"Poppins" ;
 
 /*EGER DOSYAMIZ CSS OLSAYDI busekilde yapardik$navbar-light-color: $color2;
 .nav-link:hover, .nav-link:focus{
