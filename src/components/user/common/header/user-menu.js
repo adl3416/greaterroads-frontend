@@ -20,7 +20,7 @@ const UserMenu= () => {
 
           dispatch(logout());
           //localISROREGE bosaltilcak
-          navigate("/") // logout dan sonra ana sayfaya yönlendiriyoz
+          navigate("/") // logout dan sonra ana sayfaya yönlendiriyoz zz
 
         }
       })
