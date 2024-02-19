@@ -33,9 +33,9 @@ const UserMenu= () => {
 
   return (
     <div className='user-menu'>
-          {isUserLogin ? 
-          
-          <Dropdown>
+      
+          {isUserLogin ?   //align="end"  menuyu sag tarafa sifirlar
+          <Dropdown align="end">
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
            {user.firstName} {user.lastName}
           </Dropdown.Toggle>
