@@ -5,15 +5,15 @@
           padding: 1.5rem 0  ;
      }
 
-     button, a[role="button"]{
-          @media  (max-width:991px){  //ekran 991den daha buyuk olursa asahidakiler olmayacak
+     button , a[role="button"]{ // rolu buton a lar.
+          @media (max-width:991px){  //ekran 991den daha buyuk olursa asagidakiler olmayacak
                
                background: none !important;
                border : none;
                padding: 1rem 0;
                font-weight: 500;
-              color: v.$color2;
-              display: block;
+               color: v.$color2;
+               display: block;
               text-align: left;
           }
      }
@@ -21,16 +21,17 @@
 
 
      .dropdown-menu{
-          @media  (max-width:991px){
-               position: static;
-               border: none;
-               margin: 0;
+          @media  (max-width:991px){  // ekran mak 991 olana kadar buradakileri calistir
+              position: static;
+              border: none;
+              margin: 0;
+              padding: 0;
                 }
      }
 
      .dropdown-divider{
-          @media  (max-width:991px){
-               display: none;
+          @media  (max-width:991px){  // ekran mak 991 olana kadar cizgi hic gözukmesin
+              display: none;
           }
      }
 

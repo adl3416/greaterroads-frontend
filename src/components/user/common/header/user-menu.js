@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../../../store/slices/auth-slice';
 import { question } from '../../../../utils/functions/swal';
+import "./user-menu.scss";
 
 const UserMenu= () => {
 
@@ -33,7 +34,7 @@ const UserMenu= () => {
 
   return (
     <div className='user-menu'>
-      
+
           {isUserLogin ?   //align="end"  menuyu sag tarafa sifirlar
           <Dropdown align="end">
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
@@ -41,7 +42,7 @@ const UserMenu= () => {
           </Dropdown.Toggle>
     
           <Dropdown.Menu>
-            {user.roles.includes("Administrator") && (
+            {user.roles.includes("Administrator") && (  /* userin rolleri icersinde,Administrator iceriyorsa eger true ise alt satiri yani admin paneli goster yoksa gösterme*/
               <>
                  <Dropdown.Item as={Link}  to ="/admin" >Admin Panel</Dropdown.Item>
               </>
@@ -57,8 +58,8 @@ const UserMenu= () => {
            :
           
            <div>
-               <Button variant='white'> Signin</Button>
-               <Button variant='primary'>Register</Button>
+               <Button variant="white" as={Link} to="/auth"> Sigin</Button>
+               <Button as={Link} to="/auth">Register</Button>
            </div>
           }
     </div>

@@ -8,11 +8,11 @@ import {settings} from "../../../../utils/settings"
 
 const Footer = () => {
   return (
-    <Container fluid className="footer ">
-      <Container>  
+    <Container fluid className="footer ">    {/* fluid yaparsak eger  tam ekran yapar */}
+      <Container >  
         <Row className="g-5">
           <Col md={6} lg={3}> 
-            <Link>
+            <Link to="/">
               <img src={logo} alt={settings.siteName} className="img-fluid" /> 
             </Link>
             <p>
