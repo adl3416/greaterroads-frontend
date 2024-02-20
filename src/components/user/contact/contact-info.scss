@@ -3,9 +3,9 @@
 
 
 .contact-info{
-     @include m.reset-list();
-     @include m.flexbox(column, flex-start, flex-start, 1rem);
-
+       @include m.reset-list();
+       @include m.flexbox(column, flex-start, flex-start, 1rem);
+     
      
 
 }
