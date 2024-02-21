@@ -1,21 +1,23 @@
-@use "../../../../assets//scss/-mixins.scss" as m;
+@use "../../../../assets//scss/mixins.scss" as m;
 @use "../../../../assets//scss/variables" as v;
 
 .slider{
      background-image: url("../../../../assets/img/slider/slider-bg.jpg");
-     background-repeat:no-repeat;
-     background-size: cover;
+     background-repeat:no-repeat;  // arka plan tekrar etmicek
+     background-size: cover;        //arka plan tamolarak oturmasi icin
      background-position: center center;
-     
-     @include m.flexbox(row, flex-start, stretch,0rem);
-     position: relative;
+     min-height: 500px;
+     @include m.flexbox(row, flex-start, stretch,0rem);   //resim alta dogru genisledi
+     position: relative; // kendini kime göre ayarliyagini bilcek
 
-     &::before{
-          content: "";
-          background-image: linear-gradient(to right, v.$color4, v.$color5);
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-     }
+
+
+    &::before{
+        content: "";
+        background-image: linear-gradient(to right, v.$color4, v.$color5);
+        position: absolute;
+        top:0; left:0; right:0; bottom:0;
+    }
 
 
     .carousel{
@@ -27,17 +29,18 @@
                .carousel-item{
                     height: 100%;
                   
+                  
 
                     img{
-                         position: relative;
+                         position: absolute;   //araci en saga alta aldik
                          right: 0;
                          bottom: 0;
 
 
-                         @media (max-width:1300px) { 
-                              display:none;
-                              }
-                    }
+                         @media (max-width:1300px) { //ekran 1300 den sonra display none olcak
+                              display: none;
+                          }
+                      }
 
                     .carousel-caption{
                          top: 50%;

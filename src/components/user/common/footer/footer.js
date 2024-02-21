@@ -8,12 +8,13 @@ import {settings} from "../../../../utils/settings"
 
 const Footer = () => {
   return (
-    <Container fluid className="footer ">    {/* fluid yaparsak eger  tam ekran yapar */}
+    <Container fluid className="footer ">    
       <Container >  
         <Row className="g-5">
           <Col md={6} lg={3}> 
-            <Link to="/">
-              <img src={logo} alt={settings.siteName} className="img-fluid" /> 
+            <Link to="/">    
+                                                         {/* fluid yaparsak eger  tam ekran yapar */}
+              <img src={logo} alt={settings.siteName} className="img-fluid" />       {/*   // img-fluid: ekran kiculdugunde resmi ona göre ayarliyor kucultuyo */}
             </Link>
             <p>
               Flexible Vermietung Stornieren oder ändern Sie die meisten
@@ -21,7 +22,7 @@ const Footer = () => {
             </p>
           </Col>
 
-          <Col md={6} lg={3}>
+          <Col md={6} lg={3}> 
             <h2> Quick Links </h2> 
             <ul>
               <li>

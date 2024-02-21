@@ -12,7 +12,7 @@ const MobileApp = () => {
       <Container>
         <Row className="g-5">
           <Col md={6}>
-            <SectionHeader
+            <SectionHeader  //buradan props lari gönderioruz
               title="Download our app to get some goodies"
               subTitle="Download now"
               alignment="left"
@@ -24,7 +24,7 @@ const MobileApp = () => {
               suppliers to integrate with.
             </p>
 
-            <div className="app-store">
+            <div className="app-store"> 
               <a href="https://play.google.com">
                 <img src={btnGoogle} alt="Download from Google Play" />
               </a>
