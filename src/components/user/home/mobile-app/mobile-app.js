@@ -7,7 +7,7 @@ import btnApple from "../../../../assets/img/buttons/app-store.svg";
 import mobileApp from "../../../../assets/img/bg/mobile.png";
 
 const MobileApp = () => {
-  return (
+  return (        //fluid tam ekran yapar
     <Container fluid className="mobile-app">
       <Container>
         <Row className="g-5">
@@ -15,7 +15,7 @@ const MobileApp = () => {
             <SectionHeader  //buradan props lari gönderioruz
               title="Download our app to get some goodies"
               subTitle="Download now"
-              alignment="left"
+              alignment="left"   // sola yanascak
             />
             <p>
               APIs. You can integrate car rental inventory via Application
@@ -34,14 +34,14 @@ const MobileApp = () => {
               </a>
             </div>
           </Col>
-          <Col md={6} className="text-center lg:text-end">
+          <Col md={6}>
             <img
               src={mobileApp}
               alt="Greater Roads Mobile App"
-              className="img-flud"
+              className="img-fluid"
             />
           </Col>
-        </Row>
+        </Row> 
       </Container>
     </Container>
   );

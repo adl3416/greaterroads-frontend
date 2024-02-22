@@ -2,7 +2,7 @@
 @use "../../../../assets//scss/variables" as v;
 
 .mobile-app{
-     background-image: linear-gradient(v.$color4, v.$color3);
+     background-image: linear-gradient(v.$color4, v.$color3);  //karisik renk elde etmek icin 
      padding: 5rem;
 
      .store{
@@ -16,12 +16,17 @@
           }
      }
 
-     // [class^= "col-"]:last-child{         // class ismi col ile baslayan
-     //      text-align: right;
-     //      @media (max-width:767){
-     //                text-align: center;
-     //      
-     // }
 
+
+
+     [class^= "col-"]:last-child{         // class ismi col ile baslayan last child icin
+          text-align: right;
+           @media (max-width:767){
+                    text-align: center;
+         
+      }
+     }
 }
+
+
 }

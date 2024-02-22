@@ -14,7 +14,7 @@
 
     &::before{
         content: "";
-        background-image: linear-gradient(to right, v.$color4, v.$color5);
+        background-image: linear-gradient(to right, v.$color4, v.$color5); //karisik renk elde etmek icin
         position: absolute;
         top:0; left:0; right:0; bottom:0;
     }
@@ -37,7 +37,7 @@
                          bottom: 0;
 
 
-                         @media (max-width:1300px) { //ekran 1300 den sonra display none olcak
+                         @media (max-width:767px) { //ekran 767 den sonra display none olcak
                               display: none;
                           }
                       }
@@ -45,7 +45,7 @@
                     .carousel-caption{
                          top: 50%;
                          transform: translateY(-50);
-                         text-align: left;
+                         text-align: right;
                          width: 30%;
 
                          @media (max-width:1300px) { 
@@ -61,8 +61,12 @@
                               }
      
                          h2{
+                              @media (max-width:1300px) { 
+                                   font-size: 2rem;
+                              }
+
                               color: v.$color1;
-                              font-size: 3rem;
+                              font-size: 2rem;
                               font-weight: 900;
                               text-shadow: 0 0 15px white;  //maatlastiriyor
                               width: 80%;
