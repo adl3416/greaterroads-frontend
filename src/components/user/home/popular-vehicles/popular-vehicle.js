@@ -4,13 +4,27 @@ import settings from '../../../../utils/settings';
 //importlar eksik
 
 
+const PopularVehicle = () => {
+  return (
+    <div>PopularVehicle</div>
+  )
+}
 
+export default PopularVehicle
+
+
+
+
+
+
+
+/*
 const PopularVehicle = (props) => {
      const {activeVehicle} =props;
      const{image, model, age, airConditioning, doors,fuelType, id, luggage, pricePerHour, seats, transmission }=activeVehicle;
   return (
      <Container></Container>  
-     /*
+     
     <Container>
      <Row clasName="g-5">
           <Col md={8}> 
@@ -29,8 +43,9 @@ const PopularVehicle = (props) => {
      
      
      </Container>
-    */
-  )
+    
 }
-
+)
 export default PopularVehicle  
+
+*/

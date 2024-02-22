@@ -5,7 +5,36 @@ import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import "./vehicle-bar.scss";
 import { useRef } from "react";
 
+ 
+
 const VehicleBar = (props) => {
+    const {vehicles }= props;   //PopularVehicles den gönderdigimiz datayi burada props karsiladik
+    console.log(vehicles)
+
+  return (
+    <Container className="vehicle-bar">
+       <Swiper
+      spaceBetween={50}
+      slidesPerView={3}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+    >
+      <SwiperSlide>Slide 1</SwiperSlide>
+      <SwiperSlide>Slide 2</SwiperSlide>
+      <SwiperSlide>Slide 3</SwiperSlide>
+      <SwiperSlide>Slide 4</SwiperSlide>
+      ...
+    </Swiper>
+      {vehicles.map(vehicle=><div> {vehicle.model} </div>)}
+      
+    </Container>
+  )
+}
+
+export default VehicleBar
+
+
+/* const VehicleBar = (props) => {
   const { vehicles, activeVehicle, setActiveVehicle } = props;
   const [isEnd, setIsEnd] = useState(false);
   const [isBeginning, setIsBeginning] = useState(true);
@@ -75,4 +104,4 @@ const VehicleBar = (props) => {
   );
 };
 
-export default VehicleBar;
+export default VehicleBar; */

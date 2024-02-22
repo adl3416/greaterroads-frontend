@@ -9,7 +9,7 @@ const HomePage = () => {
     <> 
         <Slider/>  
         <Spacer/>
-        <PopularVehicles/>
+        <PopularVehicles/> 
         <Spacer/>
         <MobileApp/>
         <Spacer/>

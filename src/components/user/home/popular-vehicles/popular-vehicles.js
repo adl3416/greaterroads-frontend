@@ -6,6 +6,66 @@ import SectionHeader from "../../common/section-header/section-header";
 import PopularVehicle from "./popular-vehicle";
 import VehicleBar from "./vehicle-bar";
 
+
+
+const PopularVehicles = () => {
+
+  const [vehicles, setVehicles] = useState([]); // backenden  datayi cekip saklayacagimiz usestate ihtiyacimiz var
+  const [loading, setLoading] = useState(true); // spienner
+
+
+  const loadData = async () => { 
+      try {
+        const resp = await getVehiclesByPage(); // burada backen cevap veriyo onuda resp e aliyoruz, once  getVehiclesByPage() i cagiriyoruz
+        setVehicles(resp.data.content) // burada set le degistiriyouz
+
+      } catch (err) {
+        console.log(err);
+
+      }
+      finally{
+        setLoading(false);  // sipinneri devre disi birakiyoruz
+      }
+  }
+
+
+  useEffect(() => {  // sadece ilk yuklenirken  caliscak
+     loadData(); // componet ilk render olunca backende  baglancak bu fonksiyonla datayi cekiyoruz 
+   
+  }, [])
+  
+
+
+
+
+  return (
+    <div>
+
+      <SectionHeader
+      title="Popular Vehicle Models"
+      subTitle="Lux &amp; economic"
+      desc="To contribute to positive change and achieve our sustainability goals with many axtraordinary"
+
+      />
+
+      {loading ? (
+                  <Loading/>      // loading eger true ise spinner dönsun eger falsse <VehicleBar/> ve <PopularVehicle/> calissin
+                  ) : (
+                                             //backentden aldigimiz data(tumarablar) vehicles in icinde bunuda props ile  VehicleBar  a gönderiyoruz
+         <>                                         
+              <VehicleBar vehicles={vehicles}/> 
+              <PopularVehicle/>
+          </>
+          )}
+
+    </div>
+  )
+}
+
+export default PopularVehicles
+
+
+/* 
 const PopularVehicles = () => {
   const [vehicles, setVehicles] = useState([]);
   const [activeVehicle, setActiveVehicle] = useState({});
@@ -51,4 +111,4 @@ const PopularVehicles = () => {
   );
 };
 
-export default PopularVehicles;
+export default PopularVehicles; */
