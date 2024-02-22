@@ -7,7 +7,7 @@ import PopularVehicles from '../../components/user/home/popular-vehicles/popular
 const HomePage = () => {
   return (
     <> 
-        <Slider/>
+        <Slider/>  
         <Spacer/>
         <PopularVehicles/>
         <Spacer/>

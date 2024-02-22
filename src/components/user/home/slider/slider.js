@@ -30,8 +30,6 @@ const Slider = () => {
 
 export default Slider
 /* 
-
-
 const Slider = () => {
   return (
     <div className="slider">
