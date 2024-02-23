@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { IoIosArrowDropleft, IoIosArrowDropright, IoIosArrowDroprightCircle } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import "./vehicle-bar.scss";
 import { useRef } from "react";
 
@@ -11,10 +11,23 @@ const VehicleBar = (props) => {
     const {vehicles,activeVehicle, setActiveVehicle  }= props;   //PopularVehicles den gönderdigimiz datayi burada props karsiladik
     console.log(vehicles)
 
+    const swiperRef = useRef(null);
+   
+
+    const handlePrev = () => {
+      swiperRef.current.swiper.slidePrev();
+    };
+  
+    const handleNext = () => {
+      swiperRef.current.swiper.slideNext();
+    };
+
   return (
     <Container className="vehicle-bar">
-       <div className="arrow-left"> <IoIosArrowDropleft /> </div> 
+       <div className="arrow-left"  onClick={handlePrev}> <IoIosArrowDropleft /> </div> 
+
        <Swiper  // swiperden hazir olark aldik
+       ref={swiperRef}
       spaceBetween={20}    // herbr elemanin arasindaki bosluk
       slidesPerView={5}     // ayni anda kac araba olcak
       onSlideChange={() => console.log('slide change')}
@@ -29,7 +42,7 @@ const VehicleBar = (props) => {
       ))}                                                                                                         
    
     </Swiper>
-    <div className="arrow-rihgt"> <IoIosArrowDropright /> </div> 
+    <div className="arrow-right" onClick={handleNext}> <IoIosArrowDropright /> </div> 
       
       
     </Container>
