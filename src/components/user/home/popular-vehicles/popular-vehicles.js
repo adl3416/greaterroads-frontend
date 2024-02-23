@@ -13,12 +13,17 @@ const PopularVehicles = () => {
   const [vehicles, setVehicles] = useState([]); // backenden  datayi cekip saklayacagimiz usestate ihtiyacimiz var
   const [loading, setLoading] = useState(true); // spienner
 
+  const [activeVehicle, setActiveVehicle] = useState();  // sectigimiz arabayi aktiv yapip göstercek
+
 
   const loadData = async () => { 
       try {
         const resp = await getVehiclesByPage(); // burada backen cevap veriyo onuda resp e aliyoruz, once  getVehiclesByPage() i cagiriyoruz
-        setVehicles(resp.data.content) // burada set le degistiriyouz
+        const data=resp.data.content;
+        setVehicles(data) // burada set le degistiriyouz gelen datayi yukluyoz
 
+        if (data.length >0)setActiveVehicle(data[0]); // yukaridaki satirda datayi aldiktan sonra butun arabalar vehicles e yuklendi sonra gelen datayi burada  ya ilk gelen elemani setActiveVehicle  atdik.artik setActiveVehicle  nin icinde bir tane araba var
+                                                      // setActiveVehicle  ilede bizim bastigimiz butonu aktif yapicagiz onuda prop olarak vehicle-bar agönderiyoruz
       } catch (err) {
         console.log(err);
 
@@ -53,8 +58,8 @@ const PopularVehicles = () => {
                   ) : (
                                              //backentden aldigimiz data(tumarablar) vehicles in icinde bunuda props ile  VehicleBar  a gönderiyoruz
          <>                                         
-              <VehicleBar vehicles={vehicles}/> 
-              <PopularVehicle/>
+              <VehicleBar vehicles={vehicles}     activeVehicle={activeVehicle}     setActiveVehicle={setActiveVehicle } />    
+              <PopularVehicle activeVehicle={activeVehicle}/>
           </>
           )}
 

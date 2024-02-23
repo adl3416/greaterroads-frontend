@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowDropright, IoIosArrowDroprightCircle } from "react-icons/io";
 import "./vehicle-bar.scss";
 import { useRef } from "react";
 
  
 
 const VehicleBar = (props) => {
-    const {vehicles }= props;   //PopularVehicles den gönderdigimiz datayi burada props karsiladik
+    const {vehicles,activeVehicle, setActiveVehicle  }= props;   //PopularVehicles den gönderdigimiz datayi burada props karsiladik
     console.log(vehicles)
 
   return (
     <Container className="vehicle-bar">
-       <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
+       <div className="arrow-left"> <IoIosArrowDropleft /> </div> 
+       <Swiper  // swiperden hazir olark aldik
+      spaceBetween={20}    // herbr elemanin arasindaki bosluk
+      slidesPerView={5}     // ayni anda kac araba olcak
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      ...
+     
+      {vehicles.map((vehicle)=>( 
+      <SwiperSlide className={vehicle.id === activeVehicle.id ?  "active" : ""}
+        onClick={()=> setActiveVehicle(vehicle)} //vehicle yi setActiveVehicle(PopularVehicles deki)  ye gönderiyoruz hangisine basarsak o aktif olsun diyoruz. eger sana tiklanirsa  o vehicle yi aktif vehicle olarak degistir 
+       key={vehicle.id}> 
+       {vehicle.model} </SwiperSlide>  // vehicle de herdönen arabanin id si ile activeVehicle id sini karsilastirsin dogru ise class a "active" eklesin  
+      ))}                                                                                                         
+   
     </Swiper>
-      {vehicles.map(vehicle=><div> {vehicle.model} </div>)}
+    <div className="arrow-rihgt"> <IoIosArrowDropright /> </div> 
+      
       
     </Container>
   )
