@@ -26,11 +26,11 @@ const MobileApp = () => {
 
             <div className="app-store"> 
               <a href="https://play.google.com">
-                <img src={btnGoogle} alt="Download from Google Play" />
+                <img src={btnGoogle} alt="Download from Google Play" className="img-fluid" />
               </a>
 
               <a href="https://apple.com">
-                <img src={btnApple} alt="Download from AppStore" />
+                <img src={btnApple} alt="Download from AppStore" className="img-fluid" />
               </a>
             </div>
           </Col>
