@@ -52,6 +52,7 @@ const PopularVehicles = () => {
       desc="To contribute to positive change and achieve our sustainability goals with many axtraordinary"
 
       />
+      <Spacer height={30}/>
 
       {loading ? (
                   <Loading/>      // loading eger true ise spinner dönsun eger falsse <VehicleBar/> ve <PopularVehicle/> calissin
@@ -59,6 +60,7 @@ const PopularVehicles = () => {
                                              //backentden aldigimiz data(tumarablar) vehicles in icinde bunuda props ile  VehicleBar  a gönderiyoruz
          <>                                         
               <VehicleBar vehicles={vehicles}     activeVehicle={activeVehicle}     setActiveVehicle={setActiveVehicle } />    
+               <Spacer height={50}/>
               <PopularVehicle activeVehicle={activeVehicle}/>
           </>
           )}
