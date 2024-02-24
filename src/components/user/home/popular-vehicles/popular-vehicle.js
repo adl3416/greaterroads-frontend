@@ -4,9 +4,22 @@ import settings from '../../../../utils/settings';
 //importlar eksik
 
 
-const PopularVehicle = () => {
+const PopularVehicle = (props) => {
+     const {activeVehicle} =props;
+     const {image, model }= activeVehicle;
+
+     console.log(activeVehicle);
   return (
-    <div>PopularVehicle</div>
+    <Container>
+          <Row className='g-5'>
+               <Col md={8}>
+                    <img src= {`${settings.apiURL}/files/display/${image[0]}`} className='img-fluid' />
+               </Col>
+
+               <Col md={4}>
+               </Col>
+          </Row>
+    </Container>
   )
 }
 

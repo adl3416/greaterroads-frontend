@@ -24,7 +24,7 @@ const VehicleBar = (props) => {
 
   return (
     <Container className="vehicle-bar">
-       <div className="arrow-left"  onClick={handlePrev}> <IoIosArrowDropleft /> </div> 
+       <div className={"arrow" } onClick={handlePrev}> <IoIosArrowDropleft /> </div> 
 
        <Swiper  // swiperden hazir olark aldik
        ref={swiperRef}
@@ -32,6 +32,29 @@ const VehicleBar = (props) => {
       slidesPerView={5}     // ayni anda kac araba olcak
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
+
+      breakpoints={{
+        0: {
+          spaceBetween: 10,
+          slidesPerView: 1,
+        },
+        576: {
+          spaceBetween: 20,
+          slidesPerView: 2,
+        },
+        768: {
+          spaceBetween: 20,
+          slidesPerView: 3,
+        },
+        992: {
+          spaceBetween: 20,
+          slidesPerView: 5,
+        },
+        1200: {
+          spaceBetween: 20,
+          slidesPerView: 6,
+        },
+      }}
     >
      
       {vehicles.map((vehicle)=>( 
@@ -42,7 +65,7 @@ const VehicleBar = (props) => {
       ))}                                                                                                         
    
     </Swiper>
-    <div className="arrow-right" onClick={handleNext}> <IoIosArrowDropright /> </div> 
+    <div className="arrow" onClick={handleNext}> <IoIosArrowDropright /> </div> 
       
       
     </Container>

@@ -4,7 +4,7 @@
 
 
 .vehicle-bar{
-     @include m.flexbox(row, space-between,  center, 0.5rem); // sag ok solok ve swiper ayni satirda olsun
+     @include m.flexbox(row, space-between,  center, 0.5rem); // sagok solok ve swiper ayni satirda olsun
 
      .swiper-wrapper{
           padding: 1rem;
@@ -22,12 +22,13 @@
           }
      }
 
-     .arrow-left, .arrow-right{
+     .arrow{
           background-color: v.$color3;
           border-radius: 50%;
           color: v.$color5;
           font-size: 3rem;
           box-shadow: 0 0 5px v.$color5;
+
           @include m.flexbox(row, center, center,0);
           cursor: pointer;
 
