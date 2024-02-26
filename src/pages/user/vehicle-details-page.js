@@ -1,19 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PageHeader from '../../components/user/common/page-header/page-header';
 import VehicleDetails from '../../components/user/vehicle-details/vehicle-details';
 import Spacer from '../../components/common/spacer/spacer';
 import { getVehicle } from '../../api/vehicle-service';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setVehicle } from '../../store/slices/reservation-slice';
+import Loading from '../../components/common/loading/loading';
 
 const VehicleDetailsPage = () => {
+   const [loading, setLoading] = useState(true)
   const{  vehicleId } =useParams()  // custom-router de  home/vehicles/id seklinde cagiriyoruz gelen id yi altta backende gönderiyoruz
+  const dispatch = useDispatch();
+
 
   const loadData = async()=>{
     try {
       const resp = await getVehicle(vehicleId); // aldigimizida burdan backende e gönderiyoruz
-      console.log(resp.data)
+      dispatch(setVehicle(resp.data));
+      console.log(resp.data) //data geldi 
     } catch (err) {
       console.log(err)
+    }
+    finally{
+      setLoading(false);
     }
 
   };
@@ -30,7 +40,8 @@ const VehicleDetailsPage = () => {
     <>
     <PageHeader/>
     <Spacer/>
-    <VehicleDetails/>
+    {loading ? <Loading/> : <VehicleDetails/>}
+    
     <Spacer/>
     </>
   )

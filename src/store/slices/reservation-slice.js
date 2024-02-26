@@ -19,4 +19,4 @@ export const reservationSlice = createSlice({
 })                 //en sonunda birlestirip backende göndercez 
 
 export const{ setVehicle, setReservation} = reservationSlice
-export default reservationSlice.reducer;
+export default reservationSlice.reducer;  //slices klasörundeki index.js eklemeyi unutmuyoruz
