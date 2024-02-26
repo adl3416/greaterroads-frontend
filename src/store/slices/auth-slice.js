@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
      name:"auth",
      initialState:{
           user:{firstName: "Ali", lastName:"Gel" , roles: ["Administrator"]},
-          isUserLogin:true
+          isUserLogin:false
      },
 
      reducers:{
