@@ -1,8 +1,14 @@
 import React from 'react'
+import Vehicles from '../../components/user/vehicles/vehicles'
+import Spacer from '../../components/common/spacer/spacer'
 
 const VehiclePages = () => {
   return (
-    <div>VehiclePages</div>
+    <>
+    <Spacer/>
+    <Vehicles/>
+    <Spacer/>
+    </>
   )
 }
 
