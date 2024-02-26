@@ -12,7 +12,11 @@ const VehicleBar = (props) => {
     console.log(vehicles)
 
     const swiperRef = useRef(null);
-   
+    const[isEnd ,setIsEnd]=useState(false);
+    const[isBeginning ,setIsBeginning]=useState(true);
+
+
+
 
     const handlePrev = () => {
       swiperRef.current.swiper.slidePrev();
@@ -21,17 +25,25 @@ const VehicleBar = (props) => {
     const handleNext = () => {
       swiperRef.current.swiper.slideNext();
     };
+    
+    const handleChange= (e) =>{
+      console. log(e);
+      setIsBeginning(e.isBeginning);
+      setIsEnd(e.isEnd); 
+    }
+
 
   return (
     <Container className="vehicle-bar">
-       <div className={"arrow" } onClick={handlePrev}> <IoIosArrowDropleft /> </div> 
-
+       <div className={`arrow ${isBeginning ? "passive" : ""}` } onClick={handlePrev}> <IoIosArrowDropleft /> </div> 
+ 
        <Swiper  // swiperden hazir olark aldik
+       onSlideChange={handleChange}
        ref={swiperRef}
-      spaceBetween={20}    // herbr elemanin arasindaki bosluk
-      slidesPerView={5}     // ayni anda kac araba olcak
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+     // spaceBetween={20}    // herbr elemanin arasindaki bosluk
+     // slidesPerView={5}     // ayni anda kac araba olcak
+      
+      //onSwiper={(swiper) => console.log(swiper)}
 
       breakpoints={{
         0: {
@@ -65,7 +77,7 @@ const VehicleBar = (props) => {
       ))}                                                                                                         
    
     </Swiper>
-    <div className="arrow" onClick={handleNext}> <IoIosArrowDropright /> </div> 
+    <div className={`arrow ${isEnd ? "passive" : ""}` } onClick={handleNext}> <IoIosArrowDropright /> </div> 
       
       
     </Container>
