@@ -41,7 +41,9 @@ const Vehicles = () => {
         />
 
         <Row>
-            {vehicles.map(vehicle=>  <Col key={vehicle.id}> {vehicle.model}</Col> )} 
+            {vehicles.map(vehicle=>  <Col key={vehicle.id} md={3}>
+                 <VehicleCard {...vehicle} /> {/*  propsla gönderiyoruz. 2. yol {...vehicle} */}
+                 </Col> )} 
            
         </Row>
     </Container>
