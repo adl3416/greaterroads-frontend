@@ -7,6 +7,7 @@ import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
 import { GiJoystick, GiCalendarHalfYear } from "react-icons/gi";
 import "./popular-vehicle.scss";
 import Spacer from '../../../common/spacer/spacer';
+import { Link } from 'react-router-dom';
 
 
 const PopularVehicle = (props) => {
@@ -34,13 +35,17 @@ const PopularVehicle = (props) => {
                          <li> <MdOutlineAirlineSeatReclineExtra/>Seats: {seats}</li>
                          <li> <RiCaravanLine/>Luggage:{luggage}</li>
                          <li> <GiJoystick/>Transmission:{transmission}</li>
-                         <li> <IoIosSnow/>AirConditioning:{airConditioning}</li>
+
+                         {airConditioning &&(
+                               <li> <IoIosSnow/>AirConditioning:{airConditioning}</li>
+                         ) }
+                        
                          <li> <RiGasStationFill/>Fuel:{fuelType}</li>
                          <li> <GiCalendarHalfYear/>Age:{age}</li>
                     </ul>
 
                     <Spacer height={30}/>
-                    <Button variant='primary'>Rent Now</Button>
+                    <Button variant='primary' as={Link} to={`/vehicles/${id}`} >Rent Now</Button>
 
                </Col>
           </Row>
