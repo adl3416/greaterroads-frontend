@@ -1,9 +1,33 @@
-import React from 'react'
 
-const PasswordInput = () => {
+import React, { useState } from "react";
+import { Form, InputGroup } from "react-bootstrap";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import "./password-input.scss";
+
+const PasswordInput = (props) => {                  // PasswordInput 3.gun 16.30 saniyede var  oradan bakabilirsin
+  const [type, setType] = useState("password");
+
+  const handleType = () => {
+    setType(type === "password" ? "text" : "password");
+  };
+
   return (
-    <div>PasswordInput 3.gun 16.30 saniyede var  oradan bakabilirsin</div>
-  )
-}
+    <InputGroup className="mb-3 password-input">
+      <Form.Control type={type} {...props} />
 
-export default PasswordInput
+      <InputGroup.Text id="basic-addon2">
+        {type === "password" ? (
+          <BsEye onClick={handleType} />
+        ) : (
+          <BsEyeSlash onClick={handleType} />
+        )}
+      </InputGroup.Text>
+      <Form.Control.Feedback type="invalid">
+        {props.error}
+      </Form.Control.Feedback>
+    </InputGroup>
+  );
+};
+
+export default PasswordInput;
+   
