@@ -1,13 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
 export const reservationSlice = createSlice({
-    name: "reservation",
-    initialState: {
-        vehicle: null,
-        reservation:null
-    },
+  name: "reservation",
+  initialState: {
+    vehicle: null,
+    reservation: null,
+  },
     reducers:{
         setVehicle: (state, action)=>{ // backenden data gelcegi icin action koyulur
             state.vehicle = action.payload; // burasi backenden gelen bilgileri yukaridaki vehicle  nin icine yerlestircek
@@ -18,5 +16,5 @@ export const reservationSlice = createSlice({
     }
 })                 //en sonunda birlestirip backende göndercez 
 
-export const{ setVehicle, setReservation} = reservationSlice
+export const{ setVehicle, setReservation} = reservationSlice.actions;
 export default reservationSlice.reducer;  //slices klasörundeki index.js eklemeyi unutmuyoruz

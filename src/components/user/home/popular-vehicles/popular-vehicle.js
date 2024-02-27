@@ -34,8 +34,7 @@ const PopularVehicle = (props) => {
                          <li> <RiCarLine/>Doors: {doors}</li>
                          <li> <MdOutlineAirlineSeatReclineExtra/>Seats: {seats}</li>
                          <li> <RiCaravanLine/>Luggage:{luggage}</li>
-                         <li> <GiJoystick/>Transmission:{transmission}</li>
-
+                         <li> <GiJoystick/>Transmission:{transmission}</li> 
                          {airConditioning &&(
                                <li> <IoIosSnow/>AirConditioning:{airConditioning}</li>
                          ) }

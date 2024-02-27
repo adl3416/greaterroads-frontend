@@ -1,12 +1,14 @@
-import React from 'react'
-import { Badge, Card, Col, Container, Row } from 'react-bootstrap'
-import { getVehicleImage } from '../../../utils/functions/vehicle'
-import Spacer from '../../common/spacer/spacer'
+import React from "react";
+import { Badge, Container, Row, Col, Card } from "react-bootstrap";
 import { RiGasStationFill, RiCarLine, RiCaravanLine } from "react-icons/ri";
 import { IoIosSnow } from "react-icons/io";
 import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
 import { GiJoystick, GiCalendarHalfYear } from "react-icons/gi";
-import { useSelector } from 'react-redux';
+import { getVehicleImage } from "../../../utils/functions/vehicle";
+import Spacer from "../../common/spacer/spacer";
+import { useSelector } from "react-redux";
+import "./vehicle-details.scss";
+//import BookingForm from "./booking-form";
 
 const VehicleDetails = () => {
 
