@@ -7,7 +7,7 @@ import PasswordInput from "../../../common/password-input/password-input";
 //import { register } from "../../../../api/user-service";
 //import { toast } from "../../../../utils/functions/swal";
 
-const RegisterForm = () => {
+const RegisterForm = ({ setDefaultTab }) => {
 
   const [loading, setLoading] = useState(false);
 
@@ -36,12 +36,13 @@ const RegisterForm = () => {
       .matches(/[A-Z]+/, "One uppercase character")
       .matches(/[@$!%*#?&]+/, "One special character")
       .matches(/\d+/, "One number"),
-    confirmPassword: Yup.string()
+    confirmPassword: Yup.string()  //
       .required("Please re-enter your password")
-      .oneOf([Yup.ref("password")], "Password fields doesn't match"),
+      .oneOf([Yup.ref("password")], "Password fields doesn't match"), // burda eslesme kontrol edilcek
   });
 
- /*  const onSubmit = async (values) => {
+   const onSubmit = async (values) => {
+    /*
     setLoading(true);
     try {
       await register(values);
@@ -52,13 +53,14 @@ const RegisterForm = () => {
       toast(err.response.data.message, "error");
     } finally {
       setLoading(false);
-    }
-  }; */
+    }  
+    */
+  };
 
   const formik = useFormik({
-    //initialValues,
-    //validationSchema,
-    //onSubmit,
+    initialValues,
+    validationSchema,
+    onSubmit,
   });
 
 
