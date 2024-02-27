@@ -1,9 +1,24 @@
 import React from 'react'
+import { Button, Form } from 'react-bootstrap'
 
 const LoginForm = () => {
   return (
-    <div>LoginForm</div>
+   
+    <Form>
+  
+      <Form.Group className="mb-3" >
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email"  />
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password"  />
+      </Form.Group>
+      <Button> Login</Button>
+
+    </Form>
   )
 }
 
-export default LoginForm
+export default LoginForm 

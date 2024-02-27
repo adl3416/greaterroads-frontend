@@ -4,6 +4,8 @@ import "./auth.scss";
 import logo from "../../../../assets/img/logo/logo-white.png";
 import { RiCloseCircleLine, RiHome7Line } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import LoginForm from './login-form';
+import RegisterForm from './register-form';
 
 const Auth = () => {
   const navigate =useNavigate();
@@ -24,12 +26,12 @@ const Auth = () => {
           <Tabs
           defaultActiveKey="login" className="mb-3" >
            <Tab eventKey="login" title="login">
-          Login Form
+          <LoginForm/>
          </Tab>
 
 
          <Tab eventKey="register" title="register">
-            Register Form
+           <RegisterForm/>
           </Tab>
         </Tabs>
         </Col>
