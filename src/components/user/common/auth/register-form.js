@@ -42,7 +42,7 @@ const RegisterForm = ({ setDefaultTab }) => {
   });
 
    const onSubmit = async (values) => {
-    /*
+    
     setLoading(true);
     try {
       await register(values);
@@ -54,7 +54,7 @@ const RegisterForm = ({ setDefaultTab }) => {
     } finally {
       setLoading(false);
     }  
-    */
+    
   };
 
   const formik = useFormik({
