@@ -13,7 +13,7 @@ const Auth = () => {
   
   const [searchParams] = useSearchParams();
 
-  const [defaultTab, setDefaultTab] = useState("login");  //useState(searchParams.get("type") || "login");
+  const [defaultTab, setDefaultTab] =  useState(searchParams.get("type") || "login");
 
   const navigate = useNavigate();
 

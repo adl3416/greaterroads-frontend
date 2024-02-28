@@ -61,7 +61,7 @@ const UserMenu= () => {
                <Button variant="white" as={Link} to="/auth?type=login">   {/* // auth js usesearchparams ile karsiliyoruz */}
                Sigin
                </Button>
-               <Button as={Link} to="/auth?type=register">
+               <Button as={Link} to="/auth?type=register">  {/* querystring */} 
                 Register
                 </Button>
            </div>
