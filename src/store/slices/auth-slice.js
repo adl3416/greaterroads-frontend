@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
  export const authSlice=createSlice({
      name:"auth",
      initialState:{
-          user:{firstName: "Ali", lastName:"Gel" , roles: ["Administrator"]},
-          isUserLogin:true
+          user:{},    //firstName: "Ali", lastName:"Gel" , roles: ["Administrator"]
+          isUserLogin:false
      },
 
      reducers:{
