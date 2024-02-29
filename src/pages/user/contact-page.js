@@ -3,7 +3,7 @@ import AuthPage from './auth-page'
 
 const ContactPage = () => {
   return (
-    <AuthPage/>
+    <div>contact</div>
   )
 }
 

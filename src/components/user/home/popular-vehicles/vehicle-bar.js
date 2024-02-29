@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 const VehicleBar = (props) => {
     const {vehicles,activeVehicle, setActiveVehicle  }= props;   //PopularVehicles den gönderdigimiz datayi burada props karsiladik
-    console.log(vehicles)
+    //console.log(vehicles)
 
     const swiperRef = useRef(null);
     const[isEnd ,setIsEnd]=useState(false);

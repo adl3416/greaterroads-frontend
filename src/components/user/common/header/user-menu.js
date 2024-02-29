@@ -16,7 +16,7 @@ const UserMenu= () => {
 
       //mesajverecegiz bu fonksiyonu utilsde functionun icinde swalda olusturtuk
       question("Are you sure to logout").then(result=> {
-        console.log(result)
+        //console.log(result)
         if(result.isConfirmed) { // logout a basdigimizda isConfirmed true oluyo vi dispatch calisiyor
 
           dispatch(logout());
@@ -61,7 +61,7 @@ const UserMenu= () => {
                <Button variant="white" as={Link} to="/auth?type=login">   {/* // auth js usesearchparams ile karsiliyoruz */}
                Sigin
                </Button>
-               <Button as={Link} to="/auth?type=register">  {/* querystring */} 
+               <Button as={Link} to="/auth?type=register">  {/* soru isareti koyduktan sonraki kisma querystring */} 
                 Register
                 </Button>
            </div>

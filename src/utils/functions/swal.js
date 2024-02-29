@@ -11,4 +11,16 @@ export const question = (title,text="") => {   // giristen sonra cikmak istedigi
         });
  };
 
- 
+export const toast =(title,icon="info") =>{ // succes  warning question error info  =>    icon a gelecek alternativler
+       Swal.fire({
+              position: "top-end",
+              icon: icon,
+              title: title,
+              showConfirmButton: false,
+              timer: 3500
+            });
+}
+
+
+
+  

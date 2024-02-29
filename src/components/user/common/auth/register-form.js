@@ -4,14 +4,17 @@ import { Form, Button, Spinner } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import PasswordInput from "../../../common/password-input/password-input";
-//import { register } from "../../../../api/user-service";
-//import { toast } from "../../../../utils/functions/swal";
+import { register } from "../../../../api/user-service";
+import { toast } from "../../../../utils/functions/swal";
 
-const RegisterForm = ({ setDefaultTab }) => {
+
+
+const RegisterForm = ({ setDefaultTab }) => {  // burda setDefaultTab i karsiliyoruz, register yaptiktan sonra login ekranina geciyoruz 
+
 
   const [loading, setLoading] = useState(false);
 
-  const initialValues = {
+  const initialValues = {                    // Backendin bekledigi gibi yapmaliyiz.Burdan bakabiliriz=>  https://carrental-v3-backend.herokuapp.com/swagger-ui/index.html#/user-jwt-controller/registerUser
     firstName: "",
     lastName: "",
     phoneNumber: "",
@@ -37,20 +40,21 @@ const RegisterForm = ({ setDefaultTab }) => {
       .matches(/[@$!%*#?&]+/, "One special character")
       .matches(/\d+/, "One number"),
     confirmPassword: Yup.string()  //
-      .required("Please re-enter your password")
-      .oneOf([Yup.ref("password")], "Password fields doesn't match"), // burda eslesme kontrol edilcek
+      .required("Please re-enter your password") //2.sefer password girilcek
+      .oneOf([Yup.ref("password")], "Password fields doesn't match"), // burda eslesme kontrol edilcek aynisi girilmesi zorunlu 
   });
 
-   const onSubmit = async (values) => {
+   const onSubmit = async (values) => {                   //datayi burda backende baglanip göndercez. 
+    //console.log(values);
     
-    setLoading(true);
+    setLoading(true);                                     //önce bunu true ya cekelim
     try {
-      await register(values);
-      toast("You're registered successfully!", "success");
+      await register(values);                              // burdaki register i api klosöründe vehicle-service.js de olusturduk.
+      toast("You're registered successfully!", "success");   // toast function klasörunde swal.js olusturduk
       formik.resetForm();
-      setDefaultTab("login");
+      setDefaultTab("login");                            // registerden sonra ekrani login e ceviriyoruz
     } catch (err) {
-      toast(err.response.data.message, "error");
+      toast(err.response.data.message, "error");   // burasi backenden gelen format 
     } finally {
       setLoading(false);
     }  
@@ -194,9 +198,9 @@ const RegisterForm = ({ setDefaultTab }) => {
           error={formik.errors.confirmPassword}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" disabled={loading}>
-        {loading && <Spinner animation="border" size="sm" />} Register
-      </Button>
+      <Button variant="primary" type="submit" disabled={loading}>  {/* loading oldugunda buton disabled olsun */}
+        {loading && <Spinner animation="border" size="sm" />} Register  
+      </Button>           {/* loading se spinner i göster yoksa gösterme */}
     </Form>
   )
 }
