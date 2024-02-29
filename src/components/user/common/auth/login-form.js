@@ -32,8 +32,15 @@ import { useNavigate } from "react-router-dom";
 
     try {
       const respAuth = await login(values) // login service yi cagiralim
-      console.log(respAuth.data); //token veriyo
+      //console.log(respAuth.data); //to ken veriyo
+      secureLocalStorage.setItem("token", respAuth.data.token); // guvenlik icin. Burasi  respAuth.data standart token  ismi
       
+      //Bundan sonra kullanici bilgilerini almaliyiz getUser ile, bunun hicbir parametresi yok backenden bakabiliriz
+      const respUser = await getUser(); //Artik  token siz calismicak hep token isticek. aut-heeader dan cekiyoruz
+      dispatch(loginSuccess(respUser.data));
+      
+      navigate("/");
+
     } catch (err) {
       toast(err.response.data.message, "error") //err.response.data.message, bu backend in hata mesaji ve  "error" de Sweet in hata mesaji
     } 

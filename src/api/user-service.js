@@ -15,7 +15,7 @@ const register = (user)=>{
 
 
   const getUser = () => {
-    return axios.get(`${API_URL}/user`, { headers: authHeader() });
+    return axios.get(`${API_URL}/user`, { headers: authHeader() });  //auth-header dan geliyo
   };
 
 export {register,login,getUser}
