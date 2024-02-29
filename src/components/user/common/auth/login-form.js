@@ -1,70 +1,167 @@
-import React from 'react'
+import React, { useState } from "react";
 import { useFormik } from "formik";
-import { Button, Form } from 'react-bootstrap'
+import { Form, Button, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
-import PasswordInput from '../../../common/password-input/password-input';
+import PasswordInput from "../../../common/password-input/password-input";
+import { getUser, login } from "../../../../api/user-service";
+import { toast } from "../../../../utils/functions/swal";
+import secureLocalStorage from "react-secure-storage";
+import { useDispatch } from "react-redux";
+import { loginFailed, loginSuccess } from "../../../../store/slices/auth-slice";
+import { useNavigate } from "react-router-dom";
 
+ const LoginForm = () => {
+  const [ loading,setLoading] =useState(false)
+
+  
+
+  const initialValues = {
+     email: "",
+     password: "",
+  };
+
+  const validationSchema = Yup.object({
+     email: Yup.string().email().required("Please enter your email"),
+    password: Yup.string().required("Please enter your password"),
+   });
+
+   const onSubmit = async (values) => {
+    //console.log(values);
+
+    setLoading(true)
+
+    try {
+      const respAuth = await login(values) // login service yi cagiralim
+      console.log(respAuth.data); //token veriyo
+      
+    } catch (err) {
+      toast(err.response.data.message, "error") //err.response.data.message, bu backend in hata mesaji ve  "error" de Sweet in hata mesaji
+    } 
+
+    finally{
+      setLoading(false);
+    }
+
+  
+     
+
+   };
+
+   const formik = useFormik({
+     initialValues,
+     validationSchema,
+     onSubmit,
+   });
+
+
+   return (
+     <Form noValidate onSubmit={formik.handleSubmit}>
+       <Form.Group className="mb-3">
+         <Form.Label>Email address</Form.Label>
+        <Form.Control
+          type="email"
+          {...formik.getFieldProps("email")}
+          isInvalid={formik.touched.email && formik.errors.email}
+           isValid={formik.touched.email && !formik.errors.email}
+         />
+        <Form.Control.Feedback type="invalid">
+          {formik.errors.email}
+        </Form.Control.Feedback>
+       </Form.Group>
+       <Form.Group className="mb-3">
+         <Form.Label>Password</Form.Label>
+        <PasswordInput
+           {...formik.getFieldProps("password")}
+           isInvalid={formik.touched.password && formik.errors.password}
+          isValid={formik.touched.password && !formik.errors.password}
+          error={formik.errors.password}
+         />
+       </Form.Group>
+       <Button variant="primary" type="submit">
+    Login
+       </Button>
+    </Form>  );
+ };
+
+export default LoginForm;
+
+
+
+
+
+
+
+
+
+
+
+
+/* import React, { useState } from "react";
+import { useFormik } from "formik";
+import { Form, Button, Spinner } from "react-bootstrap";
+import * as Yup from "yup";
+import PasswordInput from "../../../common/password-input/password-input";
+import { getUser, login } from "../../../../api/user-service";
+import { toast } from "../../../../utils/functions/swal";
+import secureLocalStorage from "react-secure-storage";
+import { useDispatch } from "react-redux";
+import { loginFailed, loginSuccess } from "../../../../store/slices/auth-slice";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-
- const initialValues={  //formumuzdaki ilgili email ve pasa port un ilk degerlerini belirliyoruz. Burda gerek yok bos olcak
-
-      email:"",
-      password:"",
- }   
  
   
 
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
- const validationSchema = Yup.object({
-      email:Yup.string().required("Please enter your email"),
-      password:Yup.string().required("Please enter your password"),
- })
+  const validationSchema = Yup.object({
+    email: Yup.string().email().required("Please enter your email"),
+    password: Yup.string().required("Please enter your password"),
+  });
 
- const onSubmit = (values) => { 
-     
- }
+  const onSubmit = async (values) => {
+    console.log(values);
+   
+  };
 
-
-  const formik =useFormik ({
+  const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit
-
-  })
+    onSubmit,
+  });
 
 
   return (
-   
-    <Form noValidate onSubmit={formik.handleSubmit}>         {/* default olan validation özelliklerini  noValidate ile devre disi birakiriyoruz */}
-  
-      <Form.Group className="mb-3" >
+    <Form noValidate onSubmit={formik.handleSubmit}>
+      <Form.Group className="mb-3">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" 
-           {...formik.getFieldProps("email")}   // formik kullanicinin degerini statede gunceller ve statenin önceki degerinide input a getir.Yani getter setter gibi calisir.
-           isInvalid={formik.touched.email && formik.errors.email} //isInvalid:email fail i ile sinirli kalsin, burada error durumu true olursa inputun sinirlari kirmizilasir
-           isValid={formik.touched.email && !formik.errors.email} // burasi false olmasi lazim. error durumu false ise isValid true olur
-           />
-             <Form.Control.Feedback>{formik.errors.email}</Form.Control.Feedback>
+        <Form.Control
+          type="email"
+          {...formik.getFieldProps("email")}
+          isInvalid={formik.touched.email && formik.errors.email}
+          isValid={formik.touched.email && !formik.errors.email}
+        />
+        <Form.Control.Feedback type="invalid">
+          {formik.errors.email}
+        </Form.Control.Feedback>
       </Form.Group>
-
-
-
-      <Form.Group className="mb-3" >
+      <Form.Group className="mb-3">
         <Form.Label>Password</Form.Label>
-
-        <PasswordInput 
-           {...formik.getFieldProps("password")}                          // formik kullanicinin degerini statede gunceller ve statenin önceki degerinide input a getir.Yani getter setter gibi calisir.
-           isInvalid={formik.touched.password && formik.errors.password} //isInvalid:email fail i ile sinirli kalsin, burada error durumu true olursa inputun sinirlari kirmizilasir
-           isValid={formik.touched.password && !formik.errors.password} // burasi false olmasi lazim. error durumu false ise isValid true olur
-           error={formik.errors.password}
-           />
+        <PasswordInput
+          {...formik.getFieldProps("password")}
+          isInvalid={formik.touched.password && formik.errors.password}
+          isValid={formik.touched.password && !formik.errors.password}
+          error={formik.errors.password}
+        />
       </Form.Group>
-
-      <Button variant='primary'> Login</Button>
-
+      <Button variant="primary" type="submit"  >
+      Login
+      </Button>
     </Form>
-  )
-}
+  );
+};
 
-export default LoginForm 
+export default LoginForm; */
