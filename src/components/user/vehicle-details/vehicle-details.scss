@@ -1,1 +1,13 @@
+@use"../../../assets/scss/variables" as v;
+@use"../../../assets/scss/mixins" as m;
 
+
+.vehicle-details{
+    .title{
+        @include m.flexbox(row, space-between, center, 0);
+    }
+  
+    
+
+ 
+}

@@ -41,7 +41,7 @@ import { useNavigate } from "react-router-dom";
        console.log (respUser.data);//kullanici bilgisi bize geliyomu consolden bakalim. Geliyor artik bu bilgileri merkezi state yani  store klasorundeki auth a yerlestircez 
       dispatch(loginSuccess(respUser.data)); // bize backen in göndermis oldugu  user objesini (kullanici bilgilerini) merkezi state loginSuccess üerinden göndercez
       
-      navigate("/"); // login olduktan sonra  home sayfasina gidiyor 
+      navigate("/"); // login olduktan sonra   home sayfasina gidiyor 
 
     } catch (err) {
       dispatch(loginFailed()); //hata olursa merkezi state bosaltcak
@@ -87,8 +87,8 @@ import { useNavigate } from "react-router-dom";
           error={formik.errors.password}
          />
        </Form.Group>
-       <Button variant="primary" type="submit">
-    Login
+       <Button variant="primary" type="submit" disabled={loading}>
+       {loading && <Spinner animation="border" size="sm" />} Login
        </Button>
     </Form>  );
  };
