@@ -19,9 +19,9 @@ const VehicleDetailsPage = () => {
     try {
       const resp = await getVehicle(vehicleId); // aldigimizida burdan backende e gönderiyoruz
       dispatch(setVehicle(resp.data));
-      console.log(resp.data) //data geldi 
+      //console.log(resp.data) //data geldi 
     } catch (err) {
-      console.log(err)
+      //console.log(err)
     }
     finally{
       setLoading(false);

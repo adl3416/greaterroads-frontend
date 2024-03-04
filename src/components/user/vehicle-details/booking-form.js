@@ -4,6 +4,8 @@ import { Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import { isVehicleAvailable } from "../../../api/reservation-service";
+import { combineDateAndTime } from "../../../utils/functions/date-time";
+import { useSelector } from "react-redux";
 
 const BookingForm = () => {
   const vehicle = useSelector((state) => state.reservation.vehicle); // arabaya ulastik
@@ -67,13 +69,17 @@ const BookingForm = () => {
 
     try {
       const dto = {
-        carId: vehicle.id,
-        pickUpDateTime: combineDateAndTime(pickUpDate, pickUpTime),
-        dropOffDateTime: combineDateAndTime(dropOffDate, dropOffTime),
+        carId: vehicle.id,  
+        pickUpDateTime: combineDateAndTime(pickUpDate, pickUpTime),  //backende date ve time birlesik ama bizim ekranimizda ayri, bu nedenle birlestirerek backende gönderiyoruz.
+
+        dropOffDateTime: combineDateAndTime(dropOffDate, dropOffTime), // combinedropOffDateTime  a  (dropOffDate, dropOffTime bu ikisini gönderiyoruz o birlestircek geri vercek. combineDateAndTime funksiyonu function icinde date-time js
       };
-      
-       const resp =isVehicleAvailable();// buraya bir obje gönderecegiz
-    } catch (err) {
+
+       const resp =await isVehicleAvailable(dto);// buraya bir obje gönderecegiz. Oda bize geri cevap göndercek arac musait yada egil
+    
+        console.log(resp.data); // available : true  geldi
+
+      }catch (err) {
       
     }
      
@@ -178,7 +184,7 @@ const BookingForm = () => {
             </FloatingLabel>
           </InputGroup>
 
-        <Button variant="secondary" type="button" className="w-100"> Check Availability</Button>
+        <Button variant="secondary" type="button" className="w-100" onClick={checkVehicleAvailability}> Check Availability</Button>
 
       </Form>
     </>

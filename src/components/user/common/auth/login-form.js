@@ -38,7 +38,7 @@ import { useNavigate } from "react-router-dom";
       
       //Bundan sonra kullanici bilgilerini almaliyiz getUser ile, bunun hicbir parametresi yok backenden bakabiliriz
       const respUser = await getUser(); //Artik  token siz calismicak hep token isticek. aut-heeader dan cekiyoruz. Yani getUser i cagiriyoruz
-       console.log (respUser.data);//kullanici bilgisi bize geliyomu consolden bakalim. Geliyor artik bu bilgileri merkezi state yani  store klasorundeki auth a yerlestircez 
+       //console.log (respUser.data);//kullanici bilgisi bize geliyomu consolden bakalim. Geliyor artik bu bilgileri merkezi state yani  store klasorundeki auth a yerlestircez 
       dispatch(loginSuccess(respUser.data)); // bize backen in göndermis oldugu  user objesini (kullanici bilgilerini) merkezi state loginSuccess üerinden göndercez
       
       navigate("/"); // login olduktan sonra   home sayfasina gidiyor 
