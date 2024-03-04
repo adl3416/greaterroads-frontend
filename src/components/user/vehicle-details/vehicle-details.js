@@ -8,7 +8,8 @@ import { getVehicleImage } from "../../../utils/functions/vehicle";
 import Spacer from "../../common/spacer/spacer";
 import { useSelector } from "react-redux";
 import "./vehicle-details.scss";
-//import BookingForm from "./booking-form";
+import BookingForm from "./booking-form";
+
 
 const VehicleDetails = () => {
   const vehicle = useSelector((state) => state.reservation.vehicle);
@@ -74,7 +75,7 @@ const VehicleDetails = () => {
           </ul>
         </Col>
         <Col md={4}>
-          {/* <BookingForm/> */}
+           <BookingForm/> 
         </Col>
       </Row>
     </Container>
