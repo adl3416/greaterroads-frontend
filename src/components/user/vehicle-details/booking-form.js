@@ -3,8 +3,10 @@ import SectionHeader from "../common/section-header/section-header";
 import { Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
 import * as Yup from "yup";
 import {useFormik} from "formik";
+import { isVehicleAvailable } from "../../../api/reservation-service";
 
 const BookingForm = () => {
+  const vehicle = useSelector((state) => state.reservation.vehicle); // arabaya ulastik
 
   const initialValues = { //https://carrental-v3-backend.herokuapp.com/swagger-ui/index.html#/reservation-controller/makeReservation
     pickUpLocation: "",
@@ -60,7 +62,20 @@ const BookingForm = () => {
 
 
 
-  const checkVehicleAvailability=() =>{
+  const checkVehicleAvailability = async () => { //backende baglaniyoruz
+    const { pickUpDate, pickUpTime, dropOffDate, dropOffTime } = formik.values;
+
+    try {
+      const dto = {
+        carId: vehicle.id,
+        pickUpDateTime: combineDateAndTime(pickUpDate, pickUpTime),
+        dropOffDateTime: combineDateAndTime(dropOffDate, dropOffTime),
+      };
+      
+       const resp =isVehicleAvailable();// buraya bir obje gönderecegiz
+    } catch (err) {
+      
+    }
      
   }
 
