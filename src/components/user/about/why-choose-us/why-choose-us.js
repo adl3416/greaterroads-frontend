@@ -29,7 +29,7 @@ const WhyChooseUs = () => {
               us your travel dates and we'll show you which cars are available
               with the best prices.
             </p>
-            <Button variant="primary"> Rent Now </Button>
+            <Button className="btn-about" variant="primary"> Rent Now </Button>
           </Col>
 
           <Col md={6}>
