@@ -41,8 +41,9 @@ const RegisterForm = ({ setDefaultTab }) => {
       .oneOf([Yup.ref("password")], "Password fields doesn't match"), // burda eslesme kontrol edilcek
   });
 
+
    const onSubmit = async (values) => {
-    
+    /*
     setLoading(true);
     try {
       await register(values);
@@ -55,6 +56,7 @@ const RegisterForm = ({ setDefaultTab }) => {
       setLoading(false);
     }  
     
+    */
   };
 
   const formik = useFormik({
