@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionHeader from "../common/section-header/section-header";
-import { Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
+import { Alert, Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import { isVehicleAvailable } from "../../../api/reservation-service";
@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 
 const BookingForm = () => {
   const vehicle = useSelector((state) => state.reservation.vehicle); // arabaya ulastik
+  const isUserLogin = useSelector((state) => state.auth.isUserLogin); // giris yaptimi yapmadimi kontrol edicez
+  const [isVehicleAvilable, setIsVehicleAvilable] = useState(false); // Backenden cevap gelcek arac musaitmi degilmi o bilgiyi burada tutcaz
+  const [totalPrice, setTotalPrice] = useState()
 
   const initialValues = { //https://carrental-v3-backend.herokuapp.com/swagger-ui/index.html#/reservation-controller/makeReservation
     pickUpLocation: "",
@@ -75,7 +78,7 @@ const BookingForm = () => {
         dropOffDateTime: combineDateAndTime(dropOffDate, dropOffTime), // combinedropOffDateTime  a  (dropOffDate, dropOffTime bu ikisini gönderiyoruz o birlestircek geri vercek. combineDateAndTime funksiyonu function icinde date-time js
       };
 
-       const resp =await isVehicleAvailable(dto);// buraya bir obje gönderecegiz. Oda bize geri cevap göndercek arac musait yada egil
+       const resp =await isVehicleAvailable(dto);// buraya bir obje gönderecegiz. Oda bize geri cevap göndercek arac musait yada degil
     
         console.log(resp.data); // available : true  geldi
 
@@ -96,8 +99,11 @@ const BookingForm = () => {
   return (
     <>
       <SectionHeader title="Booking Form" />
+
+    	{!isUserLogin &&  <Alert> Please login first to check the car is available.</Alert>}    {/* !isUserLogin true degilse yani false bir mesaj yazacak  */}
+
       <Form noValidate>
-        {" "}
+       <fieldset disabled={!isUserLogin} >    {/* sadece formlara verilir. Özel bisey eklememize olanak saglar mesela burda kullanici giris yapmadiysa hepsi disabled olsun dedik*/}
         {/* noValidate: react bootstrap özelliklerini devre disi birakmak icin  */}
         <FloatingLabel label="Pick-up location" className="mb-3">
           <Form.Control type="text" placeholder="Pick-up location" 
@@ -185,7 +191,7 @@ const BookingForm = () => {
           </InputGroup>
 
         <Button variant="secondary" type="button" className="w-100" onClick={checkVehicleAvailability}> Check Availability</Button>
-
+        </fieldset>
       </Form>
     </>
   );

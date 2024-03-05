@@ -26,6 +26,18 @@
         font-size: 4rem;
         font-weight: 700;
         text-shadow: 0 0 30px black;
+        
+        &::before, &::after{
+            content:"...";
+            font-size:4rem;
+            opacity: 0.2;
+
+            @media (max-width: 600px) { // ekran 600 öncesi content:"" bos olcak
+               content:""
+            }
+        }
+
+
 
     }
 

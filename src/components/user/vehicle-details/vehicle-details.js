@@ -14,6 +14,7 @@ import BookingForm from "./booking-form";
 const VehicleDetails = () => {
   const vehicle = useSelector((state) => state.reservation.vehicle);
 
+
   const {
     image,
     model,

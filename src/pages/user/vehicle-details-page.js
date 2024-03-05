@@ -29,23 +29,20 @@ const VehicleDetailsPage = () => {
 
   };
 
-
   useEffect(() => {  // loadData yi useeffect ile cagirmak zorundayiz
    loadData();
   }, [])
   
-
-  return (
-
-
+  return (   // önce burasi calistigi icin loadin gi kaldirsak hata verir
     <>
-    <PageHeader /* title={vehicle.model} *//>  {/*  title={vehicle.model} : pageheader deki araba ismi cikmasi icin yazdik */}
+
+    <PageHeader  title={vehicle?.model} />        {/*  title={vehicle.model} : pageheader deki araba ismi cikmasi icin yazdik   ve ? sayesinde arac geldikten sonra model gelmesini sagladik yoksa hata verir*/}     
     <Spacer/>
     {loading ? <Loading/> : <VehicleDetails/>}
     
     <Spacer/>
     </>
-  )
+  ); 
 }
 
 export default VehicleDetailsPage
