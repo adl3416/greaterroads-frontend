@@ -15,7 +15,7 @@ const PopularVehicle = (props) => {
      const {image, model ,age,airConditioning, doors, fuelType, id, 
           luggage, pricePerHour, seats, transmission}= activeVehicle;
 
-     console.log(activeVehicle);
+     //console.log(activeVehicle);
   return (
     <Container className='popular-vehicle'>
           <Row className='g-5'>

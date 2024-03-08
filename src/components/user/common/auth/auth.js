@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./auth.scss";
 import logo from "../../../../assets/img/logo/logo-white.png";
@@ -7,17 +7,21 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import LoginForm from "./login-form";
 import RegisterForm from "./register-form";
 
-
-
 const Auth = () => {
+  const [searchParams] = useSearchParams(); // user-menu js. sayfasindaki butonlardan querystring burda karsiliyoruz. Keyden value yi elde ediyoruz.
   
-  const [searchParams] = useSearchParams();
-
-  const [defaultTab, setDefaultTab] = useState("login");  //useState(searchParams.get("type") || "login");
+  //console.log(searchParams.get("type"));
+  const [defaultTab, setDefaultTab] = useState("login");          // useState(searchParams.get("type") || "login");     Keyden login yada registiri elde ediyoruz. Defaul da login yaptik
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setDefaultTab(searchParams.get("type") || "login"); // || "login"  detault
 
+  }, [searchParams]) // searchParam calisinca 21. satir caliscak re render olucak
+  
+
+ //console.log(defaultTab);
 
 
   return (
@@ -46,7 +50,7 @@ const Auth = () => {
                 </Tab>
 
                 <Tab eventKey="register" title="register">
-                  <RegisterForm setDefaultTab={setDefaultTab} />
+                  <RegisterForm setDefaultTab={setDefaultTab} />  {/* register yaptiktan sonra login ekranina geciyoruz  bunu register formuna gönderiyoruz orda karsilamamiz lazim*/}
                 </Tab>
               </Tabs>
             </Card.Body>

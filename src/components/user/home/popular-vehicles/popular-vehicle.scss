@@ -23,7 +23,7 @@ p{
 }
 
 ul{
-   @include m.reset-list();   // liste olmaktan cikardik
+  @include m.reset-list();   // liste olmaktan cikardik
    li{
     line-height: 2rem;
     font-size: 1rem;

@@ -1,8 +1,13 @@
 import React from 'react'
+import "./page-header.scss";
 
-const PageHeader = () => {
+const PageHeader = ({title}) => {
+
+
   return (
-    <div>PageHeader</div>
+    <div className='page-header'>
+      <h1> {title}</h1>
+    </div>
   )
 }
 
