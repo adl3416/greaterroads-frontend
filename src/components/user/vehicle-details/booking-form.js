@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import SectionHeader from "../common/section-header/section-header";
-import { Alert, Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
+import { Alert, Button, ButtonGroup, FloatingLabel, Form, FormCheck, InputGroup, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import { isVehicleAvailable } from "../../../api/reservation-service";
 import { combineDateAndTime } from "../../../utils/functions/date-time";
 import { useSelector } from "react-redux";
+import { toast } from "../../../utils/functions/swal";
+import InputMask from "react-input-mask-next";
+import {checkExpireDate} from "../../../utils/functions/date-time";
+
+
+
+
+
+
 
 const BookingForm = () => {
   const vehicle = useSelector((state) => state.reservation.vehicle); // arabaya ulastik
   const isUserLogin = useSelector((state) => state.auth.isUserLogin); // giris yaptimi yapmadimi kontrol edicez
   const [isVehicleAvilable, setIsVehicleAvilable] = useState(false); // Backenden cevap gelcek arac musaitmi degilmi o bilgiyi burada tutcaz
   const [totalPrice, setTotalPrice] = useState()
+  const [loading, setLoading] = useState(false);
 
   const initialValues = { //https://carrental-v3-backend.herokuapp.com/swagger-ui/index.html#/reservation-controller/makeReservation
     pickUpLocation: "",
@@ -34,24 +44,24 @@ const BookingForm = () => {
     pickUpTime: Yup.string().required("Select a pick-up time"),
     dropOffDate: Yup.string().required("Select a drop-off date"),
     dropOffTime: Yup.string().required("Select a drop-off time"),
-    /*
+    
     cardNo: Yup.string().required("Please enter the card number"),
     nameOnCard: Yup.string().required("Please enter the name on the card"),
     expireDate: Yup.string()
       .required("Please enter the expire date")
-      .test("month_check", "Enter a valid expire date (MM/YY)", (value) =>
-        checkExpireDate(value)
+      .test("month_check", "Enter a valid expire date (MM/YY)", (value) => // test fonsiyonunun 1. degeri isim 2.degeri mesaj 3. degeride fonksiyon yaziyoruz.
+        checkExpireDate(value) // bu fonksiyon utilsde function klasörunde data-time js de tanimli
       ),
-    cvc: Yup.number()
-      .typeError("Must be number")
+    cvc: Yup.number()  // cvc number olcak
+      .typeError("Must be number") //number girmesse bu mesaj verilcek
       .required()
       .min(1)
       .max(999, "Please enter CVC"),
-    contract: Yup.boolean().oneOf(
-      [true],
+    contract: Yup.boolean().oneOf(  //isaretlenip isaretlenmedgi kontrol edilcek, 
+      [true],  //isaretlenmesi lazim yani true olmali
       "Please read the contract and check the box"
     ),
-    */
+    
   });
 
   const onSubmit = ()=>{
@@ -69,6 +79,7 @@ const BookingForm = () => {
 
   const checkVehicleAvailability = async () => { //backende baglaniyoruz
     const { pickUpDate, pickUpTime, dropOffDate, dropOffTime } = formik.values;
+    setLoading(true) // backende gönermeden önce
 
     try {
       const dto = {
@@ -80,10 +91,28 @@ const BookingForm = () => {
 
        const resp =await isVehicleAvailable(dto);// buraya bir obje gönderecegiz. Oda bize geri cevap göndercek arac musait yada degil
     
+       const {available, totalPrice}=resp.data;  // available  true  ve totalprice geldi sonra burayi yazdik. Bize gelen datayi ayirdik.
+        setIsVehicleAvilable(available);
+        setTotalPrice(totalPrice); //guncelledik
+
+
+        if(!available) throw new Error("The vehicle you selected is not avilable. Please select different date");  //eger araba müsait degilsebu hata mesajini vericek
+
+
+
         console.log(resp.data); // available : true  geldi
 
       }catch (err) {
+         // err.message ->burdan gelen hata mesaji
+         // err.response.data.message -> backend gönderirse hata nesaji
+
+
+        toast(err.message  || err.response.data.message, "error")
       
+    }
+
+    finally{
+      setLoading(false);
     }
      
   }
@@ -192,6 +221,100 @@ const BookingForm = () => {
 
         <Button variant="secondary" type="button" className="w-100" onClick={checkVehicleAvailability}> Check Availability</Button>
         </fieldset>
+
+        <fieldset className="mt-5">
+          <Alert variant="info"> <h2> Total Price: ${totalPrice}</h2> </Alert>
+
+        <FloatingLabel label="Card number" className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Card number"
+              as={InputMask}
+              mask="9999-9999-9999-9999"
+              {...formik.getFieldProps("cardNo")}
+              isInvalid={isInvalid("cardNo")}
+              isValid={isValid("cardNo")}
+            />
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.cardNo}
+            </Form.Control.Feedback>
+          </FloatingLabel>
+
+          <FloatingLabel label="Name on card" className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Name on card"
+              {...formik.getFieldProps("Name on card")}
+              isInvalid={isInvalid("Name on card")}
+              isValid={isValid("Name on card")}
+            />
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.cardNo}
+            </Form.Control.Feedback>
+          </FloatingLabel>
+
+
+          <InputGroup>
+            <FloatingLabel label="Expire date" className="mb-3">
+              <Form.Control
+                type="text"
+                as={InputMask}
+                mask="99/99"       //buna uygun girmek zorunda
+                placeholder="Expire date"
+                {...formik.getFieldProps("expireDate")}
+                isInvalid={isInvalid("expireDate")}
+                isValid={isValid("expireDate")}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.expireDate}
+              </Form.Control.Feedback>
+            </FloatingLabel>
+
+            <FloatingLabel label="CVC" className="mb-3">
+              <Form.Control
+                type="text"
+                as={InputMask}
+                mask="999"   // //buna uygun girmek zorunda
+                placeholder="CVC"
+                {...formik.getFieldProps("cvc")}
+                isInvalid={isInvalid("cvc")}
+                isValid={isValid("cvc")}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.cvc}
+              </Form.Control.Feedback>
+            </FloatingLabel>
+          </InputGroup>
+
+          <FormCheck    //sozlesmeyi onaylama
+            type="checkbox"
+            id="contract"
+            label="I have read and aggree the contract"
+            {...formik.getFieldProps("contract")}
+            isInvalid={isInvalid("contract")}
+            isValid={isValid("contract")}
+          />
+
+<ButtonGroup className="mt-3 w-100">
+            <Button
+              variant="secondary"
+              type="button"
+              disabled={loading}
+             /*  onClick={() => setCarAvailable(false)}  */// edite basincafalse cekiyoruz
+            >
+              Edit
+            </Button>
+            <Button variant="primary" type="submit" disabled={loading}>
+              {loading && <Spinner animation="border" size="sm" />} Book Now
+            </Button>
+          </ButtonGroup>
+
+      
+          
+
+        </fieldset>
+
+
       </Form>
     </>
   );
