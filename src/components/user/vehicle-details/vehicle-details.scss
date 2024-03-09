@@ -4,7 +4,7 @@
 
 .vehicle-details{
     .title{
-      @include m.flexbox(row, space-between, center, 0); //space-between:iki ayri uca gönder,
+      @include m.flexbox(row, space-between, center, 0); //space-between:iki ayri uca gönderiyor
 
     }
 
