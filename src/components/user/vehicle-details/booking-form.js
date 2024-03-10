@@ -295,12 +295,12 @@ const BookingForm = () => {
             isValid={isValid("contract")}
           />
 
-<ButtonGroup className="mt-3 w-100">
+        <ButtonGroup className="mt-3 w-100">
             <Button
               variant="secondary"
               type="button"
               disabled={loading}
-             /*  onClick={() => setCarAvailable(false)}  */// edite basincafalse cekiyoruz
+             /*  onClick={() => setCarAvailable(false)}  */ // edite basinca false cekiyoruz
             >
               Edit
             </Button>
