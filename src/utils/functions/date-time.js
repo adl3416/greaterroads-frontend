@@ -15,3 +15,29 @@ export const checkExpireDate = (expireDate) => {  //tarih kontrolu yapiliyor
   if (date < new Date()) return false; //eger tarih suanki raihten geri ise return false yap
   return true;
 };
+
+export const getCurrentDate = () => {
+  return moment().format("YYYY-MM-DD"); //mevcut tarihi bu formatta veriyo
+};
+
+
+export const getDate = (dateTime) => { // benim gönderdigim tarihi bu formatta veriyo
+  return moment(dateTime).format("YYYY-MM-DD");
+};
+
+export const getTime = (dateTime) => {
+  return moment(dateTime).format("HH:mm");
+};
+
+export const checkDates = (dates) => { //tarihleri karsilastircak
+  const { pickUpDate, pickUpTime, dropOffDate, dropOffTime } = dates;
+
+  const date1 = moment(`${pickUpDate} ${pickUpTime}`);
+  const date2 = moment(`${dropOffDate} ${dropOffTime}`);
+
+  return date2 >= date1.add(1, "h");   //date2 date1den buyuk olucak yani rezervsyn baslagic tarihginden önceki bir tarih secemicek
+};
+
+export const formatDateTimeToLLL = (dateTime) => {
+  return moment(dateTime).format("lll");
+};
