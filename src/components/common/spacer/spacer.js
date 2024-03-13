@@ -6,4 +6,4 @@ const Spacer = ({height=100}) => {  //aralara bosluk koymak icin kullanacagiz
   )
 }
 
-export default Spacer
+export default Spacer  
