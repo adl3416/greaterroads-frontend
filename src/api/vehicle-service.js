@@ -24,7 +24,13 @@ const getVehiclesByPage=(page = 0, size= 10, sort= "model", direction="ASC")=>{ 
 
 };
 
+ const getVehicleImage = (id) => {   //bu resim byt seklinde veritabani icine json  formatindyms gibi gömmus.
+     if (Array.isArray(id)) id = id[0];
+     return axios.get(`${settings.apiURL}/files/display/${id}`, { // burda enpointen bir resim istioyruz ama bite bunu json degil arraybuffer seklinde gönder.
+       responseType: "arraybuffer",
+     });
+   };
 
-export{getVehicles, getVehiclesByPage,getVehicle}; 
+export{getVehicles, getVehiclesByPage,getVehicle,getVehicleImage}; 
 
  

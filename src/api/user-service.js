@@ -18,4 +18,15 @@ const register = (user)=>{
     return axios.get(`${API_URL}/user`, { headers: authHeader() });  //auth-header dan geliyo
   };
 
-export {register,login,getUser}
+ const updateUser = (user) => { // kullanici kendi bilgilerini guncelleyecek
+    return axios.put(`${API_URL}/user`, user, { headers: authHeader() });
+  };
+
+
+ const updatePassword = (passwords) => { //kullanici pasaportu guncelleyecek
+    return axios.patch(`${API_URL}/user/auth`, passwords, {
+      headers: authHeader(),
+    });
+  };
+
+export {register,login,getUser,updateUser,updatePassword}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import settings from '../../../../utils/settings';
 import { RiGasStationFill, RiCarLine, RiCaravanLine } from "react-icons/ri";
@@ -8,14 +8,42 @@ import { GiJoystick, GiCalendarHalfYear } from "react-icons/gi";
 import "./popular-vehicle.scss";
 import Spacer from '../../../common/spacer/spacer';
 import { Link } from 'react-router-dom';
+import { getVehicleImage } from "../../../../api/vehicle-service";
 
 
 const PopularVehicle = (props) => {
+
+     const [loading, setLoading] = useState(false);
+     const [imageSrc, setImageSrc] = useState("");
+
      const {activeVehicle} =props;
      const {image, model ,age,airConditioning, doors, fuelType, id, 
           luggage, pricePerHour, seats, transmission}= activeVehicle;
 
      //console.log(activeVehicle);
+
+     const loadImage = async () => { // resim gec yuklendigi icin bunu yapiyoruz
+          //console.log(image)
+          if (!image) return; //eger resim bos sa hic girmesin
+          setLoading(true);
+          try {
+            const resp = await getVehicleImage(image);     // https://www.base64-image.de/    bu siteden base64 e bakilabilinir
+            let imageBase64 = Buffer.from(resp.data).toString("base64"); //resp.data arraybuffer tarzinda gelcek sonra base64 formatina ceviriyoruz
+            setImageSrc(`data:${resp.headers["content-type"]};base64,${imageBase64}`);
+          } catch (err) {
+            console.log(err);
+          } finally {
+            setLoading(false);
+          }
+        };
+      
+        useEffect(() => {  //ilk yukleme icin
+          loadImage();
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [activeVehicle]); //  activeVehicle degistigi surece degiscek
+
+
+
   return (
     <Container className='popular-vehicle'>
           <Row className='g-5'>

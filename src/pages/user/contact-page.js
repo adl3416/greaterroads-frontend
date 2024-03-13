@@ -1,10 +1,20 @@
-import React from 'react'
-import AuthPage from './auth-page'
+
+import React from "react";
+import Spacer from "../../components/common/spacer/spacer";
+import PageHeader from "../../components/user/common/page-header/page-header";
+import ContactForm from "../../components/user/contact/contact-form/contact-form";
+//import Map from "../../components/users/contact/map/map";
 
 const ContactPage = () => {
   return (
-    <div>contact</div>
-  )
-}
+    <>
+      <PageHeader title="Contact Us" />
+      <Spacer/>
+      <ContactForm/>
+      <Spacer/>
+     {/*  <Map/> */}
+    </>
+  );
+};
 
-export default ContactPage
+export default ContactPage;

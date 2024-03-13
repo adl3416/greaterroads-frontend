@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../../../assets/img/logo/logo-white.png";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ContactInfo from "../../contact/contact-info";
+import ContactInfo from "../../contact/contact-info/contact-info";
 import "./footer.scss";
 import {settings} from "../../../../utils/settings"
 
