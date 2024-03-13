@@ -49,8 +49,8 @@ const UserMenu= () => {
             )}
            
             <Dropdown.Divider />   {/*  // duz cizgi cekiyo */}
-            <Dropdown.Item as={Link}  to ="/profile">Profile</Dropdown.Item>
-            <Dropdown.Item as={Link}  to ="/reservation">Reservation</Dropdown.Item>
+            <Dropdown.Item as={Link}  to ="/user">Profile</Dropdown.Item>
+            <Dropdown.Item as={Link}  to ="/user/reservation">Reservation</Dropdown.Item>
             <Dropdown.Item  onClick={handleLogout}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
