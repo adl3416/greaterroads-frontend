@@ -10,6 +10,8 @@ import VehicleDetailsPage from '../pages/user/vehicle-details-page'
 import NotFoundPage from '../pages/common/not-found-page'
 import UnauthorizedPage from '../pages/common/unauthorized-page'
 import AuthPage from '../pages/user/auth-page'
+import ProfilePage from '../pages/user/profile-page'
+import ProtectedRoute from './protected-route'
 
 const CustomRoutes = () => {
   return (
@@ -24,9 +26,14 @@ const CustomRoutes = () => {
                          <Route index element={<UserTemplate> <VehiclePages/> </UserTemplate>}/>
                          <Route path=":vehicleId" element={<UserTemplate> <VehicleDetailsPage/> </UserTemplate>} />
                     </Route>
-
                     <Route path="auth" element={<UserTemplate> <AuthPage/> </UserTemplate> }/>
                     <Route path="unauthorized" element={<UserTemplate> <UnauthorizedPage/> </UserTemplate>} />
+                    <Route path="privacy-policy" element={<UserTemplate><PrivacyPolicyPage/></UserTemplate>}/>
+                   
+                   <Route path='user'>
+                         <Route index element={ <ProtectedRoute> <UserTemplate><ProfilePage/></UserTemplate> </ProtectedRoute> }/>  {/* Guvenlik icin kullanici giris yapmadan guncellemeyapmsini engellemek icin ProtectedRoute ile sarmalladik  */}
+                   </Route>         {/*   eger kullanici giris yapmissa childreni return edecek yani profilepage,ama giris yapmadiysa  Navigate ile giris sayfasina yönlendircek.ProtectedRoute bunu sagliyor */}
+                   
                     <Route path="*" element={<UserTemplate> <NotFoundPage/> </UserTemplate>} />
 
                </Route> 

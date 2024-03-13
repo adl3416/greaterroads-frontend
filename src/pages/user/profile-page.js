@@ -1,8 +1,17 @@
 import React from 'react'
+import PageHeader from '../../components/user/common/page-header/page-header'
+import Spacer from '../../components/common/spacer/spacer'
+import Profile from '../../components/user/profile/profile'
 
 const ProfilePage = () => {
   return (
-    <div>ProfilePage</div>
+
+    <>
+    <PageHeader title="Profile" />
+    <Spacer/>
+    <Profile/>
+    <Spacer />
+    </>
   )
 }
 
