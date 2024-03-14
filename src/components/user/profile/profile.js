@@ -6,7 +6,7 @@ import PasswordForm from "./password-form";
 import ProfileForm from "./profile-form";
 
 const Profile = () => {
-  const user = useSelector(state=> state.auth.user);
+  const user = useSelector(state=> state.auth.user); //merkezi state gidip merkezi staden useri, userin icine aldik
 
   return (
     <Container>
@@ -18,7 +18,7 @@ const Profile = () => {
         </Col>
         <Col lg={5}>
           <h3>Update Profile</h3>
-          <ProfileForm user={user} />
+          <ProfileForm user={user} />    {/* //merkezi stade den algimiz useri buraya gönderdik */}
         </Col>
         <Col lg={5}>
           <h3>Update Password</h3>

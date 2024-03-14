@@ -10,7 +10,7 @@ const ProfileForm = ({ user }) => {
   const [loading, setLoading] = useState(false);
 
   const initialValues = {
-    firstName: user.firstName,
+    firstName: user.firstName,   // parent dan gelen user  bilgileri buraya yerlestirliyo, duzenleme yapcagimiz zaman bilgiler gelmesi icin
     lastName: user.lastName,
     phoneNumber: user.phoneNumber,
     address: user.address,
@@ -34,13 +34,15 @@ const ProfileForm = ({ user }) => {
   });
 
   const onSubmit = async (values) => {
-    setLoading(true);
-    try {
-      await updateUser(values);
+    //console.log(values)
+    setLoading(true);  // butona baglamamiz gerekecek
+
+    try { // backend icin try catch olusturuyoruz
+      await updateUser(values); // updateUser i cagirip values i backen e gönderiyoruz
       // burada backend güncellenmiş kullanıcı nesnesini gönderseydi aşağıdaki işlemi yapabilirdik
       // dispatch(userUpdate(resp.data));
       
-      toast("Your profile was updated successfully", "success");
+      toast("Your profile was updated successfully", "success"); // update oldugu icn backend bize geri cevap vermez kullaniciya bilgi vermemiz yeterli
     } catch (err) {
       toast(err.response.data.message, "error");
     } finally {
