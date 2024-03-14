@@ -43,7 +43,7 @@ const App = () => {
   return (
 
     <>  
-     {  loading ? <LoadingPage/>  :<CustomRoutes/> }    {/*  eger loadin oluyorsa, yukleniyorsa loadingpage göster yoksa yuklenmisse eger CustomRoutes i göster */}
+     {  loading ? <LoadingPage/>  :<CustomRoutes/> }    {/*  eger loading oluyorsa, yukleniyorsa loadingpage göster yoksa yuklenmisse eger CustomRoutes i göster */}
     </>
   )
 }
