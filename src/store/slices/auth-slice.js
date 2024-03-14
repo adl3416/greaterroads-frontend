@@ -21,9 +21,13 @@ import { createSlice } from "@reduxjs/toolkit";
                state.isUserLogin=false;
           }, 
 
+          userUpdate : (state, action)=>{  //kullani guncellenince profildede guncellencek
+               state.user = action.payload;
+             }
+
           
      },  
  });
 
- export const {loginSuccess,loginFailed,logout} =authSlice.actions;
+ export const {loginSuccess,loginFailed,logout,userUpdate} =authSlice.actions;
  export default authSlice.reducer;

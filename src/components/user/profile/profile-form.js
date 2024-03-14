@@ -5,9 +5,11 @@ import ReactInputMask from "react-input-mask-next";
 import { useFormik } from "formik";
 import { toast } from "../../../utils/functions/swal";
 import { updateUser } from "../../../api/user-service";
+import { useDispatch } from "react-redux";
 
 const ProfileForm = ({ user }) => {
   const [loading, setLoading] = useState(false);
+  const  dispatch = useDispatch();
 
   const initialValues = {
     firstName: user.firstName,   // parent dan gelen user  bilgileri buraya yerlestirliyo, duzenleme yapcagimiz zaman bilgiler gelmesi icin
@@ -37,8 +39,10 @@ const ProfileForm = ({ user }) => {
     //console.log(values)
     setLoading(true);  // butona baglamamiz gerekecek
 
+
+
     try { // backend icin try catch olusturuyoruz
-      await updateUser(values); // updateUser i cagirip values i backen e gönderiyoruz
+      await updateUser(values); // updateUser i cagirip values i backen e gönderiyoruz yani guncelliyoruz.
       // burada backend güncellenmiş kullanıcı nesnesini gönderseydi aşağıdaki işlemi yapabilirdik
       // dispatch(userUpdate(resp.data));
       

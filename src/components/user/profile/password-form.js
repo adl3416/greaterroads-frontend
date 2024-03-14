@@ -30,17 +30,21 @@ const PasswordForm = () => {
   });
 
   const onSubmit = async (values) => {
+    //console.log(values)
+
     setLoading(true);
 
-    try {
-      await updatePassword(values);
+     try {
+      await updatePassword(values); //backende gönderdik
       toast("Your password was updated successfully", "success");
       formik.resetForm();
+
     } catch (err) {
-      toast(err.response.data.message, "error");
+      toast(err.response.data.message, "error"); // eger password yanlissa backen bize mesaj göndercek
+
     } finally {
       setLoading(false);
-    }
+    } 
   };
 
   const formik = useFormik({
