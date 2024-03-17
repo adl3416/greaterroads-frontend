@@ -1,9 +1,17 @@
 import React from 'react'
+import Spacer from '../../components/common/spacer/spacer'
+import PageHeader from '../../components/user/common/page-header/page-header'
+import Reservations from '../../components/user/reservations/reservations'
 
-const ReservationPage = () => {
+const ReservationsPage = () => {
   return (
-    <div>ReservationPage</div>
+    <>
+      <PageHeader title="Reservations" />
+      <Spacer/>
+      <Reservations/>
+      <Spacer/>
+    </>
   )
 }
 
-export default ReservationPage 
+export default ReservationsPage

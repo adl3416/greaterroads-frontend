@@ -14,7 +14,7 @@ const UserMenu= () => {
 
      const handleLogout = () => { 
 
-      //mesajverecegiz bu fonksiyonu utilsde functionun icinde swalda olusturtuk
+      //mesajverecegiz bu fonksiyonu utilsde functionun icinde swalda olusturtuk.
       question("Are you sure to logout").then(result=> {
         //console.log(result)
         if(result.isConfirmed) { // logout a basdigimizda isConfirmed true oluyo vi dispatch calisiyor
@@ -50,7 +50,7 @@ const UserMenu= () => {
            
             <Dropdown.Divider />   {/*  // duz cizgi cekiyo */}
             <Dropdown.Item as={Link}  to ="/user">Profile</Dropdown.Item>
-            <Dropdown.Item as={Link}  to ="/user/reservation">Reservation</Dropdown.Item>
+            <Dropdown.Item as={Link}  to ="/user/reservations">Reservation</Dropdown.Item>
             <Dropdown.Item  onClick={handleLogout}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
