@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {Form,  Button,  Row,  Col,  ButtonGroup,  Badge,  Spinner,
-} from "react-bootstrap";
+import {Form,  Button,  Row,  Col,  ButtonGroup,  Badge,  Spinner,} from "react-bootstrap";
 import "./admin-vehicle.scss";
-import { createVehicle, uploadVehicleImage,
-} from "../../../api/vehicle-service";
+import { createVehicle, uploadVehicleImage} from "../../../api/vehicle-service";
 import { toast } from "../../../utils/functions/swal";
 import { useNavigate } from "react-router-dom";
 
@@ -46,7 +44,7 @@ const AdminVehicleNew = () => {
 
   const onSubmit = async (values) => {
     setLoading(true);
-
+/* 
     try {
       const formData = new FormData();
       formData.append("file", values.image);
@@ -68,9 +66,9 @@ const AdminVehicleNew = () => {
     }
     finally{
       setLoading(false);
-    }
+    }*/
 
-  };
+  }; 
 
   const formik = useFormik({
     initialValues,
@@ -90,13 +88,14 @@ const AdminVehicleNew = () => {
     formik.setFieldValue("image", file);  // eger bos degilseburasi caliscak.  Resmi buraya eklemis olduk
     //formik state ini manuel olarak set ettik.Seçilen dosyayı image alanına yerleştirdik.
 
-    const reader = new FileReader(); //Seçilen görüntüyü ekrana yerleştirdik
-    reader.readAsDataURL(file);
+    const reader = new FileReader(); //Seçilen görüntüyü ekrana yerleştirdik.  
+    reader.readAsDataURL(file);        //bizim dosyamizin yolunu aliyor. yani buraya gelen degeri bu fonksiyonla aldik
 
-    reader.onloadend = () => {
-      setImageSrc(reader.result);
-    };
+    reader.onloadend = () => {        
+      setImageSrc(reader.result);    //görüntü ekrana yuklenme isi bittiginde
   };
+
+};
 
 
   const isError = (field) => {
@@ -164,12 +163,10 @@ const AdminVehicleNew = () => {
                 {...formik.getFieldProps("seats")}
                 className={isError("seats") && "is-invalid"} // burda isError fonksiyonu kullandik Burdan true gelirse classname isInvalid(hazirstilleresahip) olcak yani hata varsa buraya gircek.. dis cizgiler degiscek . Normalde soyle yapiyorduk:  isinValid={formik.touched.seats && formik.errors.seats}
               />  
-              <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                 {formik.errors.seats}
               </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Luggage</Form.Label>
               <Form.Control
@@ -181,7 +178,6 @@ const AdminVehicleNew = () => {
                 {formik.errors.luggage}
               </Form.Control.Feedback>
             </Form.Group>
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Transmission</Form.Label>
               <Form.Select
@@ -197,8 +193,6 @@ const AdminVehicleNew = () => {
                 {formik.errors.transmission}
               </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Air Conditioning</Form.Label>
               <Form.Select
@@ -213,8 +207,6 @@ const AdminVehicleNew = () => {
                 {formik.errors.airConditioning}
               </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Fuel Type</Form.Label>
               <Form.Select
@@ -234,8 +226,6 @@ const AdminVehicleNew = () => {
                 {formik.errors.fuelType}
               </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Age</Form.Label>
               <Form.Control
@@ -247,8 +237,6 @@ const AdminVehicleNew = () => {
                 {formik.errors.age}
               </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Price Per Hour</Form.Label>
               <Form.Control
@@ -260,11 +248,9 @@ const AdminVehicleNew = () => {
                 {formik.errors.pricePerHour}
               </Form.Control.Feedback>
             </Form.Group>
-
           </Row>
         </Col>
       </Row>
-
       <div className="text-end">
         <ButtonGroup aria-label="Basic example">
           <Button variant="primary" type="submit" disabled={loading}>

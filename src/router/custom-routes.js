@@ -17,6 +17,7 @@ import ReservationsPage from '../pages/user/reservation-page'
 import ScrollToTop from '../components/common/scroll-to-top/scroll-to-top'
 import AdminTemplate from '../templates/admin-template'
 import AdminDashboardPage from '../pages/admins/admin-dasboard-page'
+import AdminVehicleNewPage from '../pages/admins/admin-vehicle-new-page'
 
 const CustomRoutes = () => {
   return (
@@ -35,6 +36,8 @@ const CustomRoutes = () => {
                     <Route path="auth" element={<UserTemplate> <AuthPage/> </UserTemplate> }/>
                     <Route path="unauthorized" element={<UserTemplate> <UnauthorizedPage/> </UserTemplate>} />
                     <Route path="privacy-policy" element={<UserTemplate><PrivacyPolicyPage/></UserTemplate>}/>
+
+                    <Route path="deneme" element={<UserTemplate><AdminVehicleNewPage/></UserTemplate>}/>
                    
                    <Route path='user'>
                          <Route index element={ <ProtectedRoute> <UserTemplate><ProfilePage/></UserTemplate> </ProtectedRoute> }/>  {/* Guvenlik icin kullanici giris yapmadan guncellemeyapmsini engellemek icin ProtectedRoute ile sarmalladik  */}
