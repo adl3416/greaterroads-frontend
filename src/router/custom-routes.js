@@ -13,6 +13,7 @@ import AuthPage from '../pages/user/auth-page'
 import ProfilePage from '../pages/user/profile-page'
 import ProtectedRoute from './protected-route'
 import ReservationDetailsPage from '../pages/user/reservation-details-page'
+import ReservationsPage from '../pages/user/reservation-page'
 
 const CustomRoutes = () => {
   return (
@@ -33,14 +34,21 @@ const CustomRoutes = () => {
                    
                    <Route path='user'>
                          <Route index element={ <ProtectedRoute> <UserTemplate><ProfilePage/></UserTemplate> </ProtectedRoute> }/>  {/* Guvenlik icin kullanici giris yapmadan guncellemeyapmsini engellemek icin ProtectedRoute ile sarmalladik  */}
-                   </Route>         {/*   eger kullanici giris yapmissa childreni return edecek yani profilepage,ama giris yapmadiysa  Navigate ile giris sayfasina yönlendircek.ProtectedRoute bunu sagliyor */}
-                   
-                   <Route path="reservations">
-                    <Route index element={ <ProtectedRoute> <UserTemplate><ReservationDetailsPage/></UserTemplate> </ProtectedRoute> }/>
-                    <Route path=":reservationId" element={ <ProtectedRoute> <UserTemplate><ReservationDetailsPage/></UserTemplate> </ProtectedRoute> }/>
-                  </Route>
+                           {/*   eger kullanici giris yapmissa childreni return edecek yani profilepage,ama giris yapmadiysa  Navigate ile giris sayfasina yönlendircek.ProtectedRoute bunu sagliyor */}
+                           
+                           <Route path="reservations">
+                              <Route index  element={ <ProtectedRoute> <UserTemplate><ReservationsPage/></UserTemplate> </ProtectedRoute> }/>
+                              <Route path=':reservationId'  element={ <ProtectedRoute> <UserTemplate><ReservationDetailsPage/></UserTemplate> </ProtectedRoute> }/>
+                           </Route>
+                         
+                           
+                    </Route> 
 
                     <Route path="*" element={<UserTemplate> <NotFoundPage/> </UserTemplate>} />
+
+
+
+                   
 
                </Route> 
           </Routes>
