@@ -14,10 +14,14 @@ import ProfilePage from '../pages/user/profile-page'
 import ProtectedRoute from './protected-route'
 import ReservationDetailsPage from '../pages/user/reservation-details-page'
 import ReservationsPage from '../pages/user/reservation-page'
+import ScrollToTop from '../components/common/scroll-to-top/scroll-to-top'
+import AdminTemplate from '../templates/admin-template'
+import AdminDashboardPage from '../pages/admins/admin-dasboard-page'
 
 const CustomRoutes = () => {
   return (
    <BrowserRouter>
+      <ScrollToTop/>  {/* icinde bulundugumuz path in locasyonunu veriyor */}
           <Routes>
                <Route path="/">
                     <Route index element={<UserTemplate> <HomePage/> </UserTemplate>    }/>
@@ -40,16 +44,18 @@ const CustomRoutes = () => {
                               <Route index  element={ <ProtectedRoute> <UserTemplate><ReservationsPage/></UserTemplate> </ProtectedRoute> }/>
                               <Route path=':reservationId'  element={ <ProtectedRoute> <UserTemplate><ReservationDetailsPage/></UserTemplate> </ProtectedRoute> }/>
                            </Route>
-                         
-                           
                     </Route> 
 
+
+                    <Route path="admin">
+                         <Route index element={<ProtectedRoute admin={true}> <AdminTemplate ><AdminDashboardPage/></AdminTemplate> </ProtectedRoute>}/>
+                    </Route>
+
+
+
+
+
                     <Route path="*" element={<UserTemplate> <NotFoundPage/> </UserTemplate>} />
-
-
-
-                   
-
                </Route> 
           </Routes>
    </BrowserRouter> 

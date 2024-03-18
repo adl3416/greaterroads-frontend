@@ -1,9 +1,12 @@
 import React from 'react'
+import Unauthorized from '../../components/common/unauthorized/unauthorized'
 
 
 const NotFoundPage = () => {
   return (
-    <div>NotFoundPage</div>
+    <> 
+     <Unauthorized/>
+    </>
   )
 }
 

@@ -17,7 +17,7 @@ const ReservationDetails = () => {
 
   const loadData = async () => {
     try {
-      const resp = await getReservation(reservationId);
+      const resp = await getReservation(reservationId); //bunu aldiktan sonra setreservations aatmaliyiz
       setReservation(resp.data);
     } catch (err) {
       console.log(err);
@@ -26,14 +26,14 @@ const ReservationDetails = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { //ilk yukleme icin
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
-      {loading ? (
+      {loading ? (  //loading ise loading compenentini göster degilse Row u göster
         <Loading />
       ) : (
         <Row>
