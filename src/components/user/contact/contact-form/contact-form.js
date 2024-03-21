@@ -12,7 +12,7 @@ import { toast } from "../../../../utils/functions/swal";
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
 
-  const initialValues = {
+  const initialValues = {  //https://carrental-v3-backend.herokuapp.com/swagger-ui/index.html#/contact-message-controller/createMessage     buradkilerle alt taki ler ayni olmali
     name: "",
     subject: "",
     body: "",

@@ -3,8 +3,8 @@ import { settings } from "../utils/settings";
 import authHeader from "./auth-header";
 
 const API_URL = settings.apiURL;
-
-export const sendMessage = (message) => {
+                                              // https://carrental-v3-backend.herokuapp.com/swagger-ui/index.html#/contact-message-controller/createMessage
+export const sendMessage = (message) => {  //user tarafindan mesaj göndercek, bunlari post üzerinden backende göndercez
   return axios.post(`${API_URL}/contactmessage/visitors`, message);
 };
 

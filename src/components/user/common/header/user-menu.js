@@ -32,10 +32,12 @@ const UserMenu= () => {
 
       };
 
+      
+
   return (
     <div className='user-menu'>
 
-          {isUserLogin ?   //align="end"  menuyu sag tarafa sifirlar
+          {isUserLogin ?  ( //align ="end"  menuyu sag tarafa sifirlar
           <Dropdown align="end">
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
            {user.firstName} {user.lastName}
@@ -55,7 +57,7 @@ const UserMenu= () => {
           </Dropdown.Menu>
         </Dropdown>
 
-           :
+  ):(
           
            <div>
                <Button variant="white" as={Link} to="/auth?type=login">   {/* // auth js usesearchparams ile karsiliyoruz */}
@@ -65,9 +67,11 @@ const UserMenu= () => {
                 Register
                 </Button>
            </div>
-          }
+          )}
     </div>
   )
 }
 
+
 export default UserMenu 
+

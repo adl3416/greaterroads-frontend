@@ -33,7 +33,7 @@ const ReservationDetails = () => {
 
   return (
     <Container>
-      {loading ? (  //loading ise loading compenentini göster degilse Row u göster
+      {loading ? (
         <Loading />
       ) : (
         <Row>

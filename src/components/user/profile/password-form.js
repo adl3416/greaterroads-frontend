@@ -44,7 +44,7 @@ const PasswordForm = () => {
 
     } finally {
       setLoading(false);
-    } 
+    }
   };
 
   const formik = useFormik({
