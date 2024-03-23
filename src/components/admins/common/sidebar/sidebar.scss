@@ -9,7 +9,7 @@
     @media (min-width: 992px) { //992den itibaren siyah alan asagi kadr uzuyacak
         
         height: 100vh;
-        align-items: flex-start !important;
+        align-items: flex-start !important; // hepsini yukari cikartiyor
         
       }
 
@@ -40,6 +40,10 @@
 
       .nav-link{
         color: v.$color3 !important;
+
+        svg { //semboller
+          color: v.$color1;
+        }
       }
 
     }
