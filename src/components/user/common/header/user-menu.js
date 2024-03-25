@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../../../store/slices/auth-slice';
 import { question } from '../../../../utils/functions/swal';
 import "./user-menu.scss";
+import secureLocalStorage from 'react-secure-storage';
 
 const UserMenu= () => {
 
@@ -20,7 +21,7 @@ const UserMenu= () => {
         if(result.isConfirmed) { // logout a basdigimizda isConfirmed true oluyo vi dispatch calisiyor
 
           dispatch(logout());
-          //localISROREGE bosaltilcak
+          secureLocalStorage.removeItem ("token");//localISROREGE bosaltilcak
           navigate("/") // logout dan sonra ana sayfaya yönlendiriyoz zz
 
         }
