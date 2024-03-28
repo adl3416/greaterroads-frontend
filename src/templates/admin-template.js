@@ -3,25 +3,23 @@ import { Col, Container, Row } from 'react-bootstrap';
 import SideBar from '../components/admins/common/sidebar/sidebar';
 
 const AdminTemplate = (props) => {
-     const {children} =props;
-  return (
+  const { children } = props;
 
-   <Container fluid style={{padding:0}} >  {/* // fluid tam ekran olarak kaplar   */}
-     <Row>
+return (
+  
+  <Container fluid className="p-0 overflow-hidden">
+      <Row>
           <Col lg={3}>
-               <SideBar/>
-           </Col>   
+              <SideBar/>
+          </Col>
           <Col lg={9}>
-                    <Container>
-                      {children}
-                    </Container>
-          </Col> 
-                         
-     </Row>  
-
-   </Container>
-
-  )
+              <Container className="pt-5">
+                  {children}
+              </Container>
+          </Col>
+      </Row>
+  </Container>
+)
 }
 
 export default AdminTemplate

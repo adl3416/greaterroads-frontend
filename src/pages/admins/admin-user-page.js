@@ -1,9 +1,12 @@
 import React from 'react'
+import AdminUsers from '../../components/admins/users/admin-users'
 
 const AdminUsersPage = () => {
   return (
-    <div>AdminUsersPage</div>
+    <div>
+      <AdminUsers/>
+    </div>
   )
 }
 
-export default AdminUsersPage
+export default AdminUsersPage 

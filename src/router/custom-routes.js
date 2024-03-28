@@ -18,6 +18,8 @@ import ScrollToTop from '../components/common/scroll-to-top/scroll-to-top'
 import AdminTemplate from '../templates/admin-template'
 import AdminDashboardPage from '../pages/admins/admin-dasboard-page'
 import AdminVehicleNewPage from '../pages/admins/admin-vehicle-new-page'
+import AdminUsersPage from '../pages/admins/admin-user-page'
+import AdminUserEditPage from '../pages/admins/admin-user-edit-page'
 
 const CustomRoutes = () => {
   return (
@@ -52,7 +54,12 @@ const CustomRoutes = () => {
 
                     <Route path="admin">
                          <Route index element={<ProtectedRoute admin={true}> <AdminTemplate ><AdminDashboardPage/></AdminTemplate> </ProtectedRoute>}/>
-                    </Route>
+
+                         <Route path="users">
+                           <Route index element={<ProtectedRoute admin={true}><AdminTemplate><AdminUsersPage/></AdminTemplate></ProtectedRoute>}/>
+                            <Route path=":userId" element={<ProtectedRoute admin={true}><AdminTemplate><AdminUserEditPage/></AdminTemplate></ProtectedRoute>}/>
+                        </Route>
+                 </Route>
 
 
 
