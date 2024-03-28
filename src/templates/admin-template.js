@@ -6,7 +6,7 @@ const AdminTemplate = (props) => {
      const {children} =props;
   return (
 
-   <Container fluid>  {/* // fluid tam ekran olarak kaplar   */}
+   <Container fluid style={{padding:0}} >  {/* // fluid tam ekran olarak kaplar   */}
      <Row>
           <Col lg={3}>
                <SideBar/>
