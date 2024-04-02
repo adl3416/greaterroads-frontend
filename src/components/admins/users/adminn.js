@@ -1,9 +1,9 @@
 import React from 'react'
 
-const adminn = () => {
+const Adminn = () => {
   return (
-    <div>adminn</div>
+    <div></div>
   )
 }
 
-export default adminn
+export default Adminn
