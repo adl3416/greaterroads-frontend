@@ -56,9 +56,9 @@ const AdminUserEdit = () => {
     console.log(values);
     setSaving(true);
 
-    const data = { ...values };
-    if (!data.password) {
-      delete data.password;
+    const data = { ...values }; // 
+    if (!data.password) {    //eger datadaki password bossa objenin icideki key silcez
+      delete data.password;  //
     }
     console.log(data);
 
@@ -76,7 +76,7 @@ const AdminUserEdit = () => {
     initialValues,
     validationSchema,
     onSubmit,
-    enableReinitialize: true, // sonradan formik initialValues değerini tekrar initialize yapmak için kullandık
+    enableReinitialize: true, // sonradan formik initialValues değerini tekrar initialize yapmak için kullandık.
   });
 
   const loadData = async () => {
@@ -109,7 +109,7 @@ const AdminUserEdit = () => {
       "Are you sure to delete?",
       "You won't be able to revert this!"
     ).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed) {// cevabi kontrol ediyoruz.eger onaylamissa kabul etti kullaniciyi silen funksiyonu cagiriyoruz
         removeUser();
       }
     });
