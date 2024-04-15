@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {Form,  Button,  Row,  Col,  ButtonGroup,  Badge,  Spinner,} from "react-bootstrap";
+import { Form, Button, Row, Col, ButtonGroup, Badge, Spinner } from "react-bootstrap";
 import "./admin-vehicle.scss";
-import { createVehicle, uploadVehicleImage} from "../../../api/vehicle-service";
+import { createVehicle, uploadVehicleImage } from "../../../api/vehicle-service";
 import { toast } from "../../../utils/functions/swal";
 import { useNavigate } from "react-router-dom";
 
@@ -41,10 +41,9 @@ const AdminVehicleNew = () => {
     image: Yup.mixed().required("Please select an image"),
   });
 
-
   const onSubmit = async (values) => {
     setLoading(true);
-/* 
+
     try {
       const formData = new FormData();
       formData.append("file", values.image);
@@ -66,9 +65,9 @@ const AdminVehicleNew = () => {
     }
     finally{
       setLoading(false);
-    }*/
+    }
 
-  }; 
+  };
 
   const formik = useFormik({
     initialValues,
@@ -76,36 +75,31 @@ const AdminVehicleNew = () => {
     onSubmit,
   });
 
-
-
-  const handleSelectImage = () => { //butona tikladigimizda mevcut deger(current) click olabilir.yani resim secilebilir hale geldi
+  const handleSelectImage = () => {
     fileImageRef.current.click();
   };
-  const handleImageChange = () => {  //önce alcagim resmi tutmak icin birtane file sabiti olusturuyorum.
+  const handleImageChange = () => {
     const file = fileImageRef.current.files[0];
-    if (!file) return; //eger file bos ise yani false return etsin
+    if (!file) return; //eger file null falan gelirse asagi devam etmesini engelliyor
 
-    formik.setFieldValue("image", file);  // eger bos degilseburasi caliscak.  Resmi buraya eklemis olduk
+    formik.setFieldValue("image", file); 
     //formik state ini manuel olarak set ettik.Seçilen dosyayı image alanına yerleştirdik.
 
-    const reader = new FileReader(); //Seçilen görüntüyü ekrana yerleştirdik.  
-    reader.readAsDataURL(file);        //bizim dosyamizin yolunu aliyor. yani buraya gelen degeri bu fonksiyonla aldik
+    const reader = new FileReader(); //Seçilen görüntüyü ekrana yerleştirdik
+    reader.readAsDataURL(file);
 
-    reader.onloadend = () => {        
-      setImageSrc(reader.result);    //görüntü ekrana yuklenme isi bittiginde
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+    };
   };
-
-};
-
 
   const isError = (field) => {
-    return formik.touched[field] && formik.errors[field]; // burdaki field gönderdigimiz model. eger bu ikisi true ise return. 
+    return formik.touched[field] && formik.errors[field];
   };
-
-  return (
-    <Form>
+  return (                                            //submit butonuna basildiginda formik evreye girer
+    <Form noValidate onSubmit={formik.handleSubmit}> 
       <Row>
-        <Col lg={3} className="image-area">
+        <Col xl={3} className="image-area">
           <Form.Control
             type="file"
             name="image"
@@ -113,36 +107,32 @@ const AdminVehicleNew = () => {
             onChange={handleImageChange}
             ref={fileImageRef}
           />
-          <img src={imageSrc} className="img-fluid" alt="..." />
-          {formik.errors.image && ( // formik.errors.image true ise  (yani isinValid) Badge caliscak
+          <img src={imageSrc} className="img-fluid" alt="..."/>
+          {formik.errors.image && (
             <Badge bg="danger" className="image-area-error">
               Please select an image
             </Badge>
           )}
-
           <Button
-            variant={formik.errors.image ? "danger" : "primary"} //formik.errors.image  tru yani hata oldugunda danger degilse primary olsun
+            variant={formik.errors.image ? "danger" : "primary"}
             onClick={handleSelectImage}
           >
             Select Image
           </Button>
         </Col>
-
-        <Col l g={9}>
+        <Col xl={9}>
           <Row>
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Model</Form.Label>
               <Form.Control
                 type="text"
                 {...formik.getFieldProps("model")}
-                className={isError("model") && "is-invalid"} // isError fonksiyonuna model diye bir gönderelim eger bu true ise classname ismimiz is-invalid olsun.degelse bisey olmasin
+                className={isError("model") && "is-invalid"}
               />
               <Form.Control.Feedback type="invalid">
-                {formik.errors.model}{" "}
-                {/*  //duruma göre hata mesaji ´verecek */}
+                {formik.errors.model}
               </Form.Control.Feedback>
             </Form.Group>
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Doors</Form.Label>
               <Form.Control
@@ -154,16 +144,14 @@ const AdminVehicleNew = () => {
                 {formik.errors.doors}
               </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group as={Col} md={4} lg={3} className="mb-3">
               <Form.Label>Seats</Form.Label>
               <Form.Control
                 type="number"
                 {...formik.getFieldProps("seats")}
-                className={isError("seats") && "is-invalid"} // burda isError fonksiyonu kullandik Burdan true gelirse classname isInvalid(hazirstilleresahip) olcak yani hata varsa buraya gircek.. dis cizgiler degiscek . Normalde soyle yapiyorduk:  isinValid={formik.touched.seats && formik.errors.seats}
-              />  
-                <Form.Control.Feedback type="invalid">
+                className={isError("seats") && "is-invalid"}
+              />
+              <Form.Control.Feedback type="invalid">
                 {formik.errors.seats}
               </Form.Control.Feedback>
             </Form.Group>

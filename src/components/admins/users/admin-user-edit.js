@@ -98,7 +98,7 @@ const AdminUserEdit = () => {
       toast("User was deleted", "success");
       navigate("/admin/users");
     } catch (err) {
-      toast(err.response.data.message, "error");
+      toast(err.response.data.message, "error"); //backenden error gelebilir
     } finally {
       setDeleting(false);
     }
